@@ -3,6 +3,14 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Design tokens consumed by the legal / consent components. Mapped to the
+     Band Perry palette: near-black surfaces, off-white text, pale sky-blue accent. */
+  --background-primary: #000000;
+  --background-alt: #000000;
+  --text-header: #ffffff;
+  --text-body: #fafafa;
+  --text-accent: #fafafa;
 }
 
 @theme inline {
@@ -10,6 +18,15 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* Aliases so the ported legal/consent components resolve to Band Perry's system */
+  --color-background-primary: var(--background-primary);
+  --color-background-alt: var(--background-alt);
+  --color-text-header: var(--text-header);
+  --color-text-body: var(--text-body);
+  --color-text-accent: var(--text-accent);
+  --font-display: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  --font-body: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -24,6 +41,76 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Concave "bitten" corners: each corner gets a quarter-circle scooped out instead of
+   a normal convex round.
+
+   A masked `border` doesn't work for this — a border is a 1px stroke, and a mask can
+   only hide existing pixels, it can't invent new ones along a curved path. A plain
+   rectangular border has no material following an arc, just a sharp corner point, so
+   masking that point away leaves a real gap: the straight edges stop short of each
+   other with nothing connecting them (confirmed by comparing the solid hover fill,
+   which curved fine, against the unhovered outline, which didn't). Masking only
+   works on a filled AREA, so:
+     - the permanent outline is a border-image (public/images/corner-outline.svg):
+       real border material that's actually drawn following the concave arc, not a
+       straight line with a bite taken out of it. The SVG is a proper ring (outer arc
+       radius 9, ring thickness 3, so the inner arc reaches radius 12 from each
+       corner) — border-image-slice/border-image-width must be 12 (the ring's full
+       depth, not just the outer radius) or the inner curve gets clipped, and must
+       stay 1:1 with the source's own units or scaling reintroduces rasterization
+       jaggies (seen earlier scaling an 18px source down to 12px).
+     - the hover fill is a masked ::before, sized (via inset: -12px) to cover the
+       same border-box the outline occupies, transparent by default (revealing
+       whatever's behind, e.g. the hero video) and switching to solid on hover.
+       --corner-r here matches the border-image's outer radius (9px) for visual
+       consistency, and stays under the ~11px threshold that broke the mask's own
+       corner-seam math earlier (9px was chosen deliberately close to that ceiling —
+       for a visibly bigger notch — rather than the original 4px, which read as too
+       subtle to notice). */
+.corner-inverted {
+  --corner-r: 9px;
+  --corner-mask: radial-gradient(circle at top left, transparent calc(var(--corner-r) - 1px), black var(--corner-r)),
+    radial-gradient(circle at top right, transparent calc(var(--corner-r) - 1px), black var(--corner-r)),
+    radial-gradient(circle at bottom left, transparent calc(var(--corner-r) - 1px), black var(--corner-r)),
+    radial-gradient(circle at bottom right, transparent calc(var(--corner-r) - 1px), black var(--corner-r));
+  position: relative;
+  /* z-index: 0 forces this button to own its local stacking context, so the
+     ::before's negative z-index below is scoped here and can't escape to affect
+     unrelated ancestors (e.g. the hero video background). */
+  z-index: 0;
+  border-style: solid;
+  border-color: #aadcf8;
+  border-width: 12px;
+  border-image-source: url("/images/corner-outline.svg");
+  border-image-slice: 12;
+  border-image-width: 12px;
+  border-image-repeat: stretch;
+}
+.corner-inverted::before {
+  content: "";
+  position: absolute;
+  /* Without an explicit z-index, this paints AFTER (on top of) the button's own
+     text per the CSS painting order (positioned z-index:auto descendants paint
+     after non-positioned in-flow content) — that was hiding the label whenever
+     the fill went solid on hover. -1 puts it behind the text instead. */
+  z-index: -1;
+  inset: -12px;
+  background-color: transparent;
+  -webkit-mask-image: var(--corner-mask);
+  -webkit-mask-position: top left, top right, bottom left, bottom right;
+  -webkit-mask-size: 51% 51%;
+  -webkit-mask-repeat: no-repeat;
+  mask-image: var(--corner-mask);
+  mask-position: top left, top right, bottom left, bottom right;
+  mask-size: 51% 51%;
+  mask-repeat: no-repeat;
+  transition: background-color 0.2s;
+}
+.corner-inverted:hover::before {
+  background-color: #aadcf8;
+}
+
 
 /*
  * Section Spacing Rule
@@ -40,4 +127,56 @@ body {
 section[data-bg="light"] + section[data-bg="light"],
 section[data-bg="dark"] + section[data-bg="dark"] {
   padding-top: 0;
+}
+
+/* Legal / Policy Pages
+   The Band Perry uses a pale sky-blue accent (#AADCF8) for links, headings, and
+   active states, so hyperlinks inside legal copy take the accent color and are
+   underlined to stay clearly distinguishable against the near-black background. */
+.legal-prose a {
+  color: #aadcf8;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+  transition: opacity 200ms;
+  word-break: break-word;
+}
+.legal-prose a:hover {
+  opacity: 0.7;
+}
+
+/* Cookie Consent / Terms Gate Buttons
+   Match the site's primary button treatment: pale sky-blue fill (#AADCF8) with
+   dark charcoal text (#292929) for primary, and a transparent variant with a
+   blue outline for ghost. Flat and rectangular, matching the site's buttons. */
+.cc-btn {
+  display: block;
+  width: 100%;
+  padding: 0.6rem 1rem;
+  font-family: var(--font-display);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  text-align: center;
+  border: 1px solid rgba(170, 220, 248, 0.6);
+  transition: all 200ms;
+  cursor: pointer;
+}
+.cc-btn-primary {
+  background: #aadcf8;
+  color: #292929;
+  border-color: #aadcf8;
+}
+.cc-btn-primary:hover {
+  background: transparent;
+  color: #aadcf8;
+}
+.cc-btn-ghost {
+  background: transparent;
+  color: #fafafa;
+}
+.cc-btn-ghost:hover {
+  background: #aadcf8;
+  color: #292929;
+  border-color: #aadcf8;
 }

@@ -1,0 +1,1000 @@
+[
+    {
+        "starts_at": "2026-07-26T16:30:00",
+        "id": "108523536",
+        "bandsintown_plus": false,
+        "artist": {
+            "show_multi_ticket": true,
+            "thumb_url": "https://photos.bandsintown.com/thumb/24232335.jpeg",
+            "support_url": "",
+            "tracker_count": 1406720,
+            "id": "386741",
+            "links": [
+                {
+                    "type": "tiktok",
+                    "url": "https://www.tiktok.com/@thebandperry"
+                },
+                {
+                    "type": "itunes",
+                    "url": "https://music.apple.com/artist/345752964?utm_source=bandsintown"
+                },
+                {
+                    "type": "spotify",
+                    "url": "https://open.spotify.com/artist/75FnCoo4FBxH5K1Rrx0k5A"
+                },
+                {
+                    "url": "https://music.amazon.com/artists/B00G9Y9P70",
+                    "type": "amazon"
+                },
+                {
+                    "url": "http://instagram.com/thebandperry",
+                    "type": "instagram"
+                },
+                {
+                    "type": "twitter",
+                    "url": "http://x.com/thebandperry"
+                },
+                {
+                    "type": "youtube",
+                    "url": "https://www.youtube.com/@TheBandPerry"
+                },
+                {
+                    "type": "website",
+                    "url": "http://thebandperry.co"
+                },
+                {
+                    "type": "shazam",
+                    "url": "https://www.shazam.com/artist/-/345752964?utm_source=bandsintown"
+                },
+                {
+                    "type": "facebook",
+                    "url": "https://www.facebook.com/thebandperry/"
+                }
+            ],
+            "facebook_page_url": "http://www.facebook.com/28815296015",
+            "options": {
+                "display_listen_unit": false
+            },
+            "name": "The Band Perry",
+            "tracking": [
+                {
+                    "code": "UA-126012795-1",
+                    "type": "google_tracking_id_1"
+                }
+            ],
+            "url": "https://www.bandsintown.com/a/386741?came_from=267&app_id=squarespace-the-band-perry",
+            "mbid": "28955336-2348-488a-9381-e3a7b0107343",
+            "artist_optin_show_phone_number": false,
+            "image_url": "https://photos.bandsintown.com/large/24232335.jpeg",
+            "upcoming_event_count": 23
+        },
+        "festival_datetime_display_rule": "date",
+        "ends_at": "",
+        "venue": {
+            "location": "Brunswick, ME",
+            "region": "ME",
+            "name": " Claws N' Country Music Festival 2026",
+            "postal_code": "04011",
+            "street_address": "179 Admiral Fitch Ave",
+            "country": "United States",
+            "longitude": "-69.9278066",
+            "latitude": "43.8975918",
+            "city": "Brunswick"
+        },
+        "on_sale_datetime": "",
+        "url": "https://www.bandsintown.com/e/108523536?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=event",
+        "title": " Claws N' Country Music Festival 2026",
+        "datetime_display_rule": "datetime",
+        "artist_id": "386741",
+        "lineup": [
+            "The Band Perry"
+        ],
+        "free": false,
+        "presale": "",
+        "sold_out": false,
+        "offers": [
+            {
+                "status": "available",
+                "type": "Tickets",
+                "url": "https://www.bandsintown.com/t/108523536?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=ticket"
+            }
+        ],
+        "festival_start_date": "2026-07-26",
+        "datetime": "2026-07-26T16:30:00",
+        "festival_end_date": "2026-07-26",
+        "description": ""
+    },
+    {
+        "url": "https://www.bandsintown.com/e/1038576259?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=event",
+        "datetime": "2026-08-13T19:30:00",
+        "festival_end_date": "",
+        "ends_at": "",
+        "festival_start_date": "",
+        "venue": {
+            "street_address": "1800 Argyle St",
+            "name": "Scotiabank Centre",
+            "country": "Canada",
+            "region": "NS",
+            "city": "Halifax",
+            "longitude": "-63.57683900000001",
+            "postal_code": "B3J 2V9",
+            "location": "Halifax, NS",
+            "latitude": "44.648275"
+        },
+        "offers": [
+            {
+                "url": "https://www.bandsintown.com/t/1038576259?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=ticket",
+                "type": "Tickets",
+                "status": "available"
+            }
+        ],
+        "id": "1038576259",
+        "starts_at": "2026-08-13T19:30:00",
+        "datetime_display_rule": "datetime",
+        "lineup": [
+            "The Band Perry"
+        ],
+        "bandsintown_plus": false,
+        "title": "",
+        "description": "No Resale Over Face Value Max McNown is using Ticketmaster's Face Value Exchange to help fans get tickets at the original price. Tickets will be non-transferable and can only be resold on Ticketmaster at face value",
+        "artist_id": "386741",
+        "on_sale_datetime": "2026-04-10T10:00:00",
+        "free": false,
+        "presale": "",
+        "sold_out": false,
+        "festival_datetime_display_rule": ""
+    },
+    {
+        "on_sale_datetime": "",
+        "offers": [
+            {
+                "status": "available",
+                "type": "Tickets",
+                "url": "https://www.bandsintown.com/t/108297104?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=ticket"
+            }
+        ],
+        "description": "",
+        "festival_start_date": "",
+        "starts_at": "2026-08-14T20:00:00",
+        "ends_at": "",
+        "venue": {
+            "name": "Casino New Brunswick",
+            "city": "Moncton",
+            "latitude": "46.127905",
+            "country": "Canada",
+            "longitude": "-64.87970630000001",
+            "region": "New Brunswick",
+            "postal_code": "E1G 1R7",
+            "location": "Moncton, New Brunswick",
+            "street_address": "21 Casino Dr"
+        },
+        "festival_end_date": "",
+        "presale": "",
+        "free": false,
+        "url": "https://www.bandsintown.com/e/108297104?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=event",
+        "datetime": "2026-08-14T20:00:00",
+        "datetime_display_rule": "datetime",
+        "id": "108297104",
+        "artist_id": "386741",
+        "bandsintown_plus": false,
+        "title": "",
+        "lineup": [
+            "The Band Perry"
+        ],
+        "festival_datetime_display_rule": "",
+        "sold_out": false
+    },
+    {
+        "venue": {
+            "postal_code": "H3C 1A9",
+            "longitude": "-73.5337419",
+            "city": "Montr\u00e9al",
+            "name": "Lasso  2026",
+            "location": "Montr\u00e9al, QC",
+            "latitude": "45.51408010000001",
+            "country": "Canada",
+            "region": "QC",
+            "street_address": "296 Chemin du Tour de l'isle"
+        },
+        "datetime_display_rule": "datetime",
+        "sold_out": false,
+        "festival_datetime_display_rule": "range",
+        "presale": "",
+        "description": "",
+        "artist_id": "386741",
+        "on_sale_datetime": "2026-02-20T10:00:00",
+        "url": "https://www.bandsintown.com/e/107965318?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=event",
+        "title": "Lasso  2026",
+        "offers": [
+            {
+                "url": "https://www.bandsintown.com/t/107965318?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=ticket",
+                "status": "available",
+                "type": "Tickets"
+            }
+        ],
+        "bandsintown_plus": false,
+        "ends_at": "",
+        "festival_start_date": "2026-08-15",
+        "id": "107965318",
+        "lineup": [
+            "The Band Perry"
+        ],
+        "free": false,
+        "festival_end_date": "2026-08-16",
+        "starts_at": "2026-08-15T15:00:00",
+        "datetime": "2026-08-15T15:00:00"
+    },
+    {
+        "presale": "",
+        "on_sale_datetime": "",
+        "lineup": [
+            "The Band Perry"
+        ],
+        "free": false,
+        "sold_out": false,
+        "description": "",
+        "url": "https://www.bandsintown.com/e/108451782?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=event",
+        "artist_id": "386741",
+        "festival_end_date": "",
+        "datetime_display_rule": "datetime",
+        "title": "",
+        "id": "108451782",
+        "datetime": "2026-08-16T19:00:00",
+        "ends_at": "",
+        "venue": {
+            "location": "Chittenango, NY",
+            "postal_code": "13037",
+            "city": "Chittenango",
+            "street_address": "1863 New Boston Rd",
+            "country": "United States",
+            "longitude": "-75.865731",
+            "region": "NY",
+            "latitude": "43.0874466",
+            "name": "The Haven of The Wild"
+        },
+        "festival_start_date": "",
+        "offers": [
+            {
+                "status": "available",
+                "url": "https://www.bandsintown.com/t/108451782?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=ticket",
+                "type": "Tickets"
+            }
+        ],
+        "bandsintown_plus": false,
+        "starts_at": "2026-08-16T19:00:00",
+        "festival_datetime_display_rule": ""
+    },
+    {
+        "presale": "",
+        "id": "108673523",
+        "sold_out": false,
+        "festival_datetime_display_rule": "range",
+        "title": "Illinois State Fair 2026",
+        "lineup": [
+            "The Band Perry"
+        ],
+        "artist_id": "386741",
+        "datetime_display_rule": "datetime",
+        "description": "",
+        "offers": [
+            {
+                "type": "Free",
+                "url": "https://www.bandsintown.com/t/108673523?app_id=squarespace-the-band-perry&came_from=267&custom=true&utm_medium=api&utm_source=public_api&utm_campaign=ticket",
+                "status": "available"
+            }
+        ],
+        "ends_at": "",
+        "bandsintown_plus": false,
+        "url": "https://www.bandsintown.com/e/108673523?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=event",
+        "datetime": "2026-08-19T19:30:00",
+        "venue": {
+            "latitude": "39.8366556",
+            "country": "United States",
+            "street_address": "Springfield Township",
+            "region": "IL",
+            "location": "Sangamon County, IL",
+            "city": "Sangamon County",
+            "name": "Illinois State Fair 2026",
+            "longitude": "-89.64188569999999",
+            "postal_code": "62702"
+        },
+        "on_sale_datetime": "",
+        "festival_start_date": "2026-08-13",
+        "free": true,
+        "festival_end_date": "2026-08-23",
+        "starts_at": "2026-08-19T19:30:00"
+    },
+    {
+        "presale": {
+            "presale_start_date": "2026-03-25",
+            "signup_after_presale_start": true,
+            "presale_start_date_time": "2026-03-25T15:00:00Z",
+            "presale_end_date_time": "2026-03-26T15:00:00Z",
+            "presale_end_date": "2026-03-26",
+            "presale_end_time": "10:00:00",
+            "presale_code": "PSYCHO26",
+            "short_link": "https://m.bnds.us/fTN2Yv",
+            "onsale_link": "https://www.bandsintown.com/t/108115336?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=ticket",
+            "presale_start_time": "10:00:00",
+            "release_id": "2a06a35f-b76e-4349-a81e-2cb62ce5403b",
+            "presale_link": "https://www.axs.com/events/1378825/coors-light-hot-country-nights-the-band-perry-tickets/promogroup/39?cid=artist_thebandperry"
+        },
+        "starts_at": "2026-08-20T19:00:00",
+        "id": "108115336",
+        "festival_start_date": "",
+        "on_sale_datetime": "2026-03-27T10:00:00",
+        "description": "",
+        "offers": [
+            {
+                "status": "available",
+                "url": "https://www.bandsintown.com/t/108115336?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=ticket",
+                "type": "Tickets"
+            }
+        ],
+        "ends_at": "",
+        "bandsintown_plus": false,
+        "lineup": [
+            "The Band Perry"
+        ],
+        "artist_id": "386741",
+        "free": false,
+        "festival_datetime_display_rule": "",
+        "sold_out": false,
+        "venue": {
+            "name": "KC Live!",
+            "location": "Kansas City, MO",
+            "postal_code": "64106",
+            "country": "United States",
+            "street_address": "13 Grand Blvd",
+            "city": "Kansas City",
+            "latitude": "39.0980534",
+            "longitude": "-94.58160529999999",
+            "region": "MO"
+        },
+        "datetime_display_rule": "datetime",
+        "url": "https://www.bandsintown.com/e/108115336?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=event",
+        "datetime": "2026-08-20T19:00:00",
+        "festival_end_date": "",
+        "title": ""
+    },
+    {
+        "id": "108297112",
+        "title": "",
+        "venue": {
+            "country": "United States",
+            "region": "VA",
+            "street_address": "500 Gate City Hwy",
+            "name": "Hard Rock Live Bristol",
+            "location": "Bristol, VA",
+            "longitude": "-82.2195936",
+            "latitude": "36.5987454",
+            "postal_code": "24201",
+            "city": "Bristol"
+        },
+        "datetime": "2026-08-27T20:00:00",
+        "festival_end_date": "",
+        "url": "https://www.bandsintown.com/e/108297112?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=event",
+        "datetime_display_rule": "datetime",
+        "starts_at": "2026-08-27T20:00:00",
+        "on_sale_datetime": "",
+        "offers": [
+            {
+                "type": "Tickets",
+                "url": "https://www.bandsintown.com/t/108297112?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=ticket",
+                "status": "available"
+            }
+        ],
+        "artist_id": "386741",
+        "festival_datetime_display_rule": "",
+        "bandsintown_plus": false,
+        "festival_start_date": "",
+        "sold_out": false,
+        "description": "",
+        "lineup": [
+            "The Band Perry"
+        ],
+        "ends_at": "",
+        "free": false,
+        "presale": ""
+    },
+    {
+        "bandsintown_plus": false,
+        "ends_at": "",
+        "id": "108297129",
+        "festival_end_date": "",
+        "on_sale_datetime": "",
+        "sold_out": false,
+        "venue": {
+            "latitude": "37.71033",
+            "country": "United States",
+            "city": "Richmond",
+            "street_address": "2284 Barnes Mill Rd",
+            "location": "Richmond, KY",
+            "region": "KY",
+            "longitude": "-84.41517999999999",
+            "postal_code": "40475",
+            "name": "Chenault Vineyards"
+        },
+        "festival_start_date": "",
+        "festival_datetime_display_rule": "",
+        "url": "https://www.bandsintown.com/e/108297129?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=event",
+        "datetime_display_rule": "datetime",
+        "title": "",
+        "free": false,
+        "datetime": "2026-08-28T18:00:00",
+        "offers": [
+            {
+                "type": "Tickets",
+                "status": "available",
+                "url": "https://www.bandsintown.com/t/108297129?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=ticket"
+            }
+        ],
+        "lineup": [
+            "The Band Perry"
+        ],
+        "starts_at": "2026-08-28T18:00:00",
+        "artist_id": "386741",
+        "description": "",
+        "presale": ""
+    },
+    {
+        "id": "1039204047",
+        "title": "",
+        "artist_id": "386741",
+        "festival_start_date": "",
+        "festival_end_date": "",
+        "on_sale_datetime": "2026-06-05T10:00:00",
+        "festival_datetime_display_rule": "",
+        "url": "https://www.bandsintown.com/e/1039204047?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=event",
+        "datetime": "2026-09-04T20:00:00",
+        "sold_out": false,
+        "venue": {
+            "region": "NV",
+            "location": "Henderson, NV",
+            "name": "Green Valley Ranch Backyard Amphitheater",
+            "latitude": "36.0397",
+            "country": "United States",
+            "postal_code": "89052",
+            "longitude": "-114.98194",
+            "city": "Henderson",
+            "street_address": "2300 Paseo Verde Parkway"
+        },
+        "free": false,
+        "starts_at": "2026-09-04T20:00:00",
+        "datetime_display_rule": "datetime",
+        "offers": [
+            {
+                "status": "available",
+                "url": "https://www.bandsintown.com/t/1039204047?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=ticket",
+                "type": "Tickets"
+            }
+        ],
+        "lineup": [
+            "The Band Perry"
+        ],
+        "ends_at": "",
+        "description": "",
+        "presale": "",
+        "bandsintown_plus": false
+    },
+    {
+        "on_sale_datetime": "2026-04-21T10:00:00",
+        "starts_at": "2026-09-10T19:00:00",
+        "sold_out": false,
+        "presale": "",
+        "festival_end_date": "",
+        "datetime_display_rule": "datetime",
+        "ends_at": "",
+        "festival_datetime_display_rule": "",
+        "festival_start_date": "",
+        "title": "",
+        "lineup": [
+            "The Band Perry"
+        ],
+        "offers": [
+            {
+                "type": "Tickets",
+                "url": "https://www.bandsintown.com/t/108059295?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=ticket",
+                "status": "available"
+            }
+        ],
+        "free": false,
+        "datetime": "2026-09-10T19:00:00",
+        "artist_id": "386741",
+        "bandsintown_plus": false,
+        "id": "108059295",
+        "url": "https://www.bandsintown.com/e/108059295?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=event",
+        "description": "",
+        "venue": {
+            "longitude": "-111.9623626",
+            "location": "Layton, UT",
+            "name": "The Kenley Amphitheater",
+            "latitude": "41.0657042",
+            "city": "Layton",
+            "country": "United States",
+            "postal_code": "84041",
+            "region": "UT",
+            "street_address": "403 N Wasatch Dr"
+        }
+    },
+    {
+        "datetime_display_rule": "datetime",
+        "presale": "",
+        "url": "https://www.bandsintown.com/e/108673525?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=event",
+        "id": "108673525",
+        "description": "",
+        "free": false,
+        "artist_id": "386741",
+        "offers": [
+            {
+                "status": "available",
+                "url": "https://www.bandsintown.com/t/108673525?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=ticket",
+                "type": "Tickets"
+            }
+        ],
+        "bandsintown_plus": false,
+        "ends_at": "",
+        "on_sale_datetime": "",
+        "lineup": [
+            "The Band Perry"
+        ],
+        "starts_at": "2026-09-11T17:30:00",
+        "festival_datetime_display_rule": "",
+        "festival_end_date": "",
+        "festival_start_date": "",
+        "datetime": "2026-09-11T17:30:00",
+        "title": "",
+        "sold_out": false,
+        "venue": {
+            "postal_code": "83617",
+            "longitude": "-116.5129372",
+            "name": "Roadhouse at The Mill LLC",
+            "region": "ID",
+            "city": "Emmett",
+            "location": "Emmett, ID",
+            "country": "United States",
+            "latitude": "43.8729963",
+            "street_address": "520 W Main St"
+        }
+    },
+    {
+        "venue": {
+            "location": "Pendleton, OR",
+            "name": "2026 Round-Up & Happy Canyon Kick-Off Concert",
+            "country": "United States",
+            "region": "OR",
+            "latitude": "45.6694959",
+            "street_address": "1601 Westgate",
+            "city": "Pendleton",
+            "postal_code": "97801",
+            "longitude": "-118.8029337"
+        },
+        "lineup": [
+            "The Band Perry"
+        ],
+        "offers": [
+            {
+                "url": "https://www.bandsintown.com/t/108077402?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=ticket",
+                "type": "Tickets",
+                "status": "available"
+            }
+        ],
+        "datetime": "2026-09-12T19:00:00",
+        "bandsintown_plus": false,
+        "sold_out": false,
+        "ends_at": "",
+        "festival_end_date": "",
+        "free": false,
+        "id": "108077402",
+        "description": "",
+        "url": "https://www.bandsintown.com/e/108077402?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=event",
+        "festival_start_date": "",
+        "title": "2026 Round-Up & Happy Canyon Kick-Off Concert",
+        "festival_datetime_display_rule": "",
+        "starts_at": "2026-09-12T19:00:00",
+        "datetime_display_rule": "datetime",
+        "presale": "",
+        "artist_id": "386741",
+        "on_sale_datetime": "2026-03-12T10:00:00"
+    },
+    {
+        "festival_end_date": "",
+        "offers": [
+            {
+                "url": "https://www.bandsintown.com/t/108386919?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=ticket",
+                "status": "available",
+                "type": "Tickets"
+            }
+        ],
+        "on_sale_datetime": "2026-05-15T10:00:00",
+        "festival_start_date": "",
+        "sold_out": false,
+        "starts_at": "2026-09-15T19:00:00",
+        "artist_id": "386741",
+        "title": "",
+        "datetime_display_rule": "datetime",
+        "description": "",
+        "ends_at": "",
+        "free": false,
+        "lineup": [
+            "The Band Perry"
+        ],
+        "datetime": "2026-09-15T19:00:00",
+        "url": "https://www.bandsintown.com/e/108386919?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=event",
+        "presale": "",
+        "festival_datetime_display_rule": "",
+        "id": "108386919",
+        "bandsintown_plus": false,
+        "venue": {
+            "location": "Spokane Valley, WA",
+            "name": "Spokane County Fair and Expo Center",
+            "postal_code": "99212",
+            "city": "Spokane Valley",
+            "latitude": "47.6622981",
+            "country": "United States",
+            "region": "WA",
+            "street_address": "404 N Havana St # 1",
+            "longitude": "-117.3426855"
+        }
+    },
+    {
+        "title": "",
+        "festival_start_date": "",
+        "datetime_display_rule": "datetime",
+        "bandsintown_plus": false,
+        "ends_at": "",
+        "datetime": "2026-09-16T19:30:00",
+        "description": "",
+        "lineup": [
+            "The Band Perry"
+        ],
+        "festival_end_date": "",
+        "presale": "",
+        "artist_id": "386741",
+        "sold_out": false,
+        "festival_datetime_display_rule": "",
+        "offers": [
+            {
+                "type": "Tickets",
+                "url": "https://www.bandsintown.com/t/108297138?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=ticket",
+                "status": "available"
+            }
+        ],
+        "id": "108297138",
+        "venue": {
+            "name": "The Newberry",
+            "region": "MT",
+            "longitude": "-111.299574",
+            "city": "Great Falls",
+            "location": "Great Falls, MT",
+            "latitude": "47.504966",
+            "street_address": "420 Central Ave",
+            "postal_code": "59401",
+            "country": "United States"
+        },
+        "free": false,
+        "on_sale_datetime": "",
+        "starts_at": "2026-09-16T19:30:00",
+        "url": "https://www.bandsintown.com/e/108297138?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=event"
+    },
+    {
+        "id": "108297146",
+        "starts_at": "2026-09-17T20:00:00",
+        "artist_id": "386741",
+        "title": "",
+        "festival_end_date": "",
+        "sold_out": false,
+        "lineup": [
+            "The Band Perry"
+        ],
+        "offers": [
+            {
+                "status": "available",
+                "type": "Tickets",
+                "url": "https://www.bandsintown.com/t/108297146?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=ticket"
+            }
+        ],
+        "ends_at": "",
+        "description": "",
+        "venue": {
+            "street_address": "2502 First Ave N",
+            "region": "MT",
+            "country": "United States",
+            "city": "Billings",
+            "longitude": "-108.5021212",
+            "location": "Billings, MT",
+            "name": "The Pub Station",
+            "latitude": "45.7836661",
+            "postal_code": "59101"
+        },
+        "free": false,
+        "on_sale_datetime": "",
+        "festival_datetime_display_rule": "",
+        "datetime_display_rule": "datetime",
+        "bandsintown_plus": false,
+        "festival_start_date": "",
+        "presale": "",
+        "url": "https://www.bandsintown.com/e/108297146?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=event",
+        "datetime": "2026-09-17T20:00:00"
+    },
+    {
+        "bandsintown_plus": false,
+        "sold_out": false,
+        "starts_at": "2026-09-19T18:30:00",
+        "datetime": "2026-09-19T18:30:00",
+        "url": "https://www.bandsintown.com/e/1039535113?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=event",
+        "festival_start_date": "",
+        "festival_datetime_display_rule": "",
+        "ends_at": "",
+        "datetime_display_rule": "datetime",
+        "on_sale_datetime": "",
+        "presale": "",
+        "festival_end_date": "",
+        "artist_id": "386741",
+        "venue": {
+            "postal_code": "80550",
+            "location": "Windsor, CO",
+            "latitude": "40.4520656",
+            "country": "United States",
+            "city": "Windsor",
+            "name": "Hoedown Hill Music Festival 2026",
+            "longitude": "-104.9313209",
+            "street_address": "1781 RainDance Nat'l Dr",
+            "region": "CO"
+        },
+        "description": "Hoedown Hill Music Festival 2026",
+        "lineup": [
+            "The Band Perry"
+        ],
+        "free": false,
+        "id": "1039535113",
+        "offers": [
+            {
+                "status": "available",
+                "type": "Tickets",
+                "url": "https://www.bandsintown.com/t/1039535113?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=ticket"
+            }
+        ],
+        "title": "Hoedown Hill Music Festival 2026"
+    },
+    {
+        "id": "108386909",
+        "title": "",
+        "free": false,
+        "on_sale_datetime": "",
+        "festival_start_date": "",
+        "festival_end_date": "",
+        "datetime_display_rule": "datetime",
+        "bandsintown_plus": false,
+        "offers": [
+            {
+                "url": "https://www.bandsintown.com/t/108386909?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=ticket",
+                "status": "available",
+                "type": "Tickets"
+            }
+        ],
+        "ends_at": "",
+        "datetime": "2026-09-26T19:00:00",
+        "venue": {
+            "location": "Lac du Flambeau, WI",
+            "longitude": "-89.89179949999999",
+            "city": "Lac Du Flambeau",
+            "region": "WI",
+            "country": "United States",
+            "street_address": "510 Old Abe Rd",
+            "latitude": "45.9741614",
+            "name": "Lake of the Torches Resort Casino",
+            "postal_code": "54538"
+        },
+        "lineup": [
+            "The Band Perry"
+        ],
+        "starts_at": "2026-09-26T19:00:00",
+        "sold_out": false,
+        "presale": "",
+        "festival_datetime_display_rule": "",
+        "url": "https://www.bandsintown.com/e/108386909?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=event",
+        "artist_id": "386741",
+        "description": ""
+    },
+    {
+        "venue": {
+            "latitude": "34.5855635",
+            "postal_code": "35603",
+            "name": "Rock the South 2026",
+            "location": "Decatur, AL",
+            "region": "AL",
+            "city": "Decatur",
+            "longitude": "-87.06415199999999",
+            "street_address": "AL-24",
+            "country": "United States"
+        },
+        "free": false,
+        "id": "108594281",
+        "festival_end_date": "2026-10-04",
+        "presale": "",
+        "offers": [
+            {
+                "status": "available",
+                "type": "Tickets",
+                "url": "https://www.bandsintown.com/t/108594281?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=ticket"
+            }
+        ],
+        "url": "https://www.bandsintown.com/e/108594281?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=event",
+        "lineup": [
+            "The Band Perry"
+        ],
+        "festival_start_date": "2026-10-01",
+        "on_sale_datetime": "",
+        "title": "Rock the South 2026",
+        "description": "",
+        "ends_at": "",
+        "starts_at": "2026-10-02T19:00:00",
+        "datetime_display_rule": "datetime",
+        "festival_datetime_display_rule": "range",
+        "artist_id": "386741",
+        "datetime": "2026-10-02T19:00:00",
+        "bandsintown_plus": false,
+        "sold_out": false
+    },
+    {
+        "lineup": [
+            "The Band Perry"
+        ],
+        "ends_at": "",
+        "datetime": "2026-10-09T20:00:00",
+        "id": "108524385",
+        "offers": [
+            {
+                "url": "https://www.bandsintown.com/t/108524385?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=ticket",
+                "status": "available",
+                "type": "Tickets"
+            }
+        ],
+        "free": false,
+        "festival_start_date": "",
+        "starts_at": "2026-10-09T20:00:00",
+        "venue": {
+            "country": "United States",
+            "location": "Mahnomen, MN",
+            "region": "MN",
+            "postal_code": "56557",
+            "name": "Shooting Star Casino Hotel & Event Center",
+            "longitude": "-95.96236010000001",
+            "street_address": "777 SE Casino Rd",
+            "city": "Mahnomen",
+            "latitude": "47.3082305"
+        },
+        "url": "https://www.bandsintown.com/e/108524385?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=event",
+        "artist_id": "386741",
+        "festival_end_date": "",
+        "sold_out": false,
+        "title": "",
+        "on_sale_datetime": "2026-07-13T09:00:00",
+        "bandsintown_plus": false,
+        "description": "",
+        "datetime_display_rule": "datetime",
+        "festival_datetime_display_rule": "",
+        "presale": ""
+    },
+    {
+        "free": true,
+        "ends_at": "",
+        "url": "https://www.bandsintown.com/e/108673530?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=event",
+        "festival_end_date": "2026-11-01",
+        "offers": [
+            {
+                "status": "available",
+                "type": "Free",
+                "url": "https://www.bandsintown.com/t/108673530?app_id=squarespace-the-band-perry&came_from=267&custom=true&utm_medium=api&utm_source=public_api&utm_campaign=ticket"
+            }
+        ],
+        "venue": {
+            "street_address": "6655 Mobile Hwy",
+            "location": "Pensacola, FL",
+            "latitude": "30.4733919",
+            "city": "Pensacola",
+            "longitude": "-87.3109101",
+            "name": "Pensacola Interstate Fair 2026",
+            "region": "FL",
+            "postal_code": "32526",
+            "country": "United States"
+        },
+        "on_sale_datetime": "",
+        "festival_start_date": "2026-10-22",
+        "datetime_display_rule": "datetime",
+        "starts_at": "2026-10-23T19:00:00",
+        "sold_out": false,
+        "festival_datetime_display_rule": "range",
+        "artist_id": "386741",
+        "description": "",
+        "datetime": "2026-10-23T19:00:00",
+        "title": "Pensacola Interstate Fair 2026",
+        "id": "108673530",
+        "presale": "",
+        "bandsintown_plus": false,
+        "lineup": [
+            "The Band Perry"
+        ]
+    },
+    {
+        "presale": "",
+        "free": false,
+        "festival_datetime_display_rule": "",
+        "starts_at": "2027-03-07T19:00:00",
+        "festival_start_date": "",
+        "bandsintown_plus": false,
+        "artist_id": "386741",
+        "description": "",
+        "sold_out": false,
+        "venue": {
+            "latitude": "33.61464299999999",
+            "longitude": "-85.834004",
+            "city": "Oxford",
+            "postal_code": "36203",
+            "region": "AL",
+            "location": "Oxford, AL",
+            "country": "United States",
+            "name": "Oxford Performing Arts Center",
+            "street_address": "100 Choccolocco St"
+        },
+        "lineup": [
+            "The Band Perry"
+        ],
+        "on_sale_datetime": "",
+        "datetime": "2027-03-07T19:00:00",
+        "title": "",
+        "ends_at": "",
+        "url": "https://www.bandsintown.com/e/108673532?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=event",
+        "id": "108673532",
+        "offers": [
+            {
+                "status": "available",
+                "url": "https://www.bandsintown.com/t/108673532?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=ticket",
+                "type": "Tickets"
+            }
+        ],
+        "datetime_display_rule": "datetime",
+        "festival_end_date": ""
+    },
+    {
+        "artist_id": "386741",
+        "free": false,
+        "starts_at": "2027-07-17T18:00:00",
+        "festival_start_date": "",
+        "offers": [
+            {
+                "status": "available",
+                "type": "Tickets",
+                "url": "https://www.bandsintown.com/t/1039113027?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=ticket"
+            }
+        ],
+        "bandsintown_plus": false,
+        "venue": {
+            "name": "Hollywood Casino at Penn National Race Course",
+            "longitude": "-76.6616518",
+            "latitude": "40.3944706",
+            "street_address": "777 Hollywood Blvd",
+            "location": "Grantville, PA",
+            "postal_code": "17028",
+            "country": "United States",
+            "region": "PA",
+            "city": "Grantville"
+        },
+        "title": "",
+        "url": "https://www.bandsintown.com/e/1039113027?app_id=squarespace-the-band-perry&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=event",
+        "lineup": [
+            "The Band Perry"
+        ],
+        "datetime_display_rule": "datetime",
+        "on_sale_datetime": "2026-02-13T10:00:00",
+        "ends_at": "",
+        "description": "",
+        "festival_datetime_display_rule": "",
+        "presale": "",
+        "festival_end_date": "",
+        "datetime": "2027-07-17T18:00:00",
+        "id": "1039113027",
+        "sold_out": false
+    }
+]
