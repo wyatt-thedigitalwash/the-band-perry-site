@@ -29,8 +29,7 @@ export function MusicReleaseCard({ release }: { release: Release }) {
         <h2 className={`${kurilian.className} text-[20px] uppercase leading-tight tracking-[0.12em] text-[#fafafa] md:text-[22px]`}>
           {release.title}
         </h2>
-        <p className="mt-1 text-xs text-[#fafafa]/50">({release.year})</p>
-        <span className="mt-2 inline-block text-[11px] uppercase tracking-[0.25em] text-[#aadcf8] transition-opacity duration-200 group-hover:opacity-70">
+        <span className="mt-2 inline-block text-[11px] uppercase text-[#aadcf8] transition-opacity duration-200 group-hover:opacity-70">
           {release.cta}
         </span>
       </div>

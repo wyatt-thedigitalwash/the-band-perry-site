@@ -16,6 +16,19 @@ import { kurilian } from "@/lib/fonts";
 // inside the box. The right pad sheds exactly one tracking step to re-centre it.
 const ctaClass = `${kurilian.className} border border-[#aadcf8] bg-[#aadcf8] py-1.5 pl-5 pr-[calc(1.25rem-0.2em)] text-[11px] uppercase tracking-[0.2em] text-[#292929] transition-colors duration-200 hover:bg-transparent hover:text-[#aadcf8]`;
 
+/**
+ * Rule between tour rows: a single hairline that fades to transparent at both
+ * edges, in place of the old hard edge-to-edge border. Rendered as its own
+ * list item between date rows.
+ */
+export function TourDivider() {
+  return (
+    <li aria-hidden="true" className="px-1 sm:px-2">
+      <span className="block h-px w-full bg-gradient-to-r from-transparent via-[#aadcf8]/30 to-transparent" />
+    </li>
+  );
+}
+
 export function TourDateRow({ date }: { date: TourDate }) {
   // Bandsintown's datetime string ("2026-08-13T19:30:00") has no timezone
   // designator, so it's already the venue's local wall-clock time. Appending
@@ -32,13 +45,15 @@ export function TourDateRow({ date }: { date: TourDate }) {
   const location = [date.city, date.region, date.country].filter(Boolean).join(", ");
 
   return (
-    <li className="group border-b border-[#aadcf8]/15 transition-colors duration-200 hover:bg-[#aadcf8]/[0.04]">
+    // The hover wash is a ::before overlay that fades to transparent at both
+    // horizontal edges, echoing the fading dividers, instead of a hard-edged
+    // full-width fill.
+    <li className="group relative isolate before:pointer-events-none before:absolute before:inset-0 before:-z-10 before:bg-gradient-to-r before:from-transparent before:via-[#aadcf8]/[0.06] before:to-transparent before:opacity-0 before:transition-opacity before:duration-200 hover:before:opacity-100">
       <div className="flex flex-col gap-5 px-1 py-6 sm:flex-row sm:items-center sm:justify-between sm:gap-8 sm:px-2">
         <div className="flex items-center gap-5 sm:gap-7">
-          {/* Date stack, ruled off from the venue the way a poster's date column is */}
-          <div
-            className={`${kurilian.className} w-[74px] shrink-0 border-r border-[#aadcf8]/20 pr-5 text-center`}
-          >
+          {/* Date stack. Fixed width keeps the venue column aligned across rows
+              (and the mobile CTA indent below assumes 74px + 20px gap). */}
+          <div className={`${kurilian.className} w-[74px] shrink-0 text-center`}>
             {/* -mr compensates for the trailing letter-space so the tracked
                 labels sit optically centred over the day numeral, which has
                 none. */}
@@ -57,7 +72,7 @@ export function TourDateRow({ date }: { date: TourDate }) {
             >
               {date.venueName}
             </h3>
-            <p className="mt-2 flex flex-wrap items-center gap-x-2.5 gap-y-1 font-body text-[11px] uppercase tracking-[0.18em] text-[#fafafa]/55">
+            <p className="mt-2 flex flex-wrap items-center gap-x-2.5 gap-y-1 font-body text-[11px] uppercase text-[#fafafa]/55">
               {location ? <span>{location}</span> : null}
               {location ? (
                 <span aria-hidden className="text-[#aadcf8]/40">

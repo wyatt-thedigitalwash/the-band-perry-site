@@ -17,6 +17,7 @@ const NAV_LINKS = [
   { label: "Tour", href: "/tour", external: false },
   { label: "Shop", href: "https://thebandperry.colortestmerch.com/", external: true },
   { label: "Music", href: "/music", external: false },
+  { label: "Videos", href: "/videos", external: false },
   { label: "About", href: "/about", external: false },
   { label: "Subscribe", href: "https://beacons.ai/thebandperry/emaillist", external: true },
 ] as const;

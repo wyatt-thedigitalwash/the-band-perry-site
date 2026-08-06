@@ -1,6 +1,7 @@
+import { Fragment } from "react";
 import type { Metadata } from "next";
 import { fetchTourDates } from "@/lib/bandsintown";
-import { TourDateRow } from "@/components/TourDateRow";
+import { TourDateRow, TourDivider } from "@/components/TourDateRow";
 import { HomeFooterBar } from "@/components/HomeFooterBar";
 import { SubscribeSection } from "@/components/SubscribeSection";
 import { kurilian } from "@/lib/fonts";
@@ -29,11 +30,14 @@ export default async function TourPage() {
       <section data-bg="primary" className="flex-1 px-5 pb-16 lg:px-12">
         <div className="mx-auto max-w-[820px]">
           {dates.length > 0 ? (
-            // Top rule so the first row is bounded the same way every row below
-            // it is, rather than floating under the heading.
-            <ul className="border-t border-[#aadcf8]/15">
-              {dates.map((date) => (
-                <TourDateRow key={date.id} date={date} />
+            // Ornamental dividers sit between rows only, so the first and last
+            // rows are bounded by whitespace rather than rules.
+            <ul>
+              {dates.map((date, index) => (
+                <Fragment key={date.id}>
+                  {index > 0 ? <TourDivider /> : null}
+                  <TourDateRow date={date} />
+                </Fragment>
               ))}
             </ul>
           ) : (

@@ -7,16 +7,41 @@ export type Release = {
   artAlt: string;
 };
 
-// Order and content mirror the legacy bandperry.com/music carousel. Every CTA is
-// a Feature.fm smart link (ffm.to) that fans out to the DSPs, not a direct DSP URL.
+// The 2026 singles lead, newest first; the rest mirrors the legacy
+// bandperry.com/music carousel. Every CTA is a Feature.fm smart link (ffm.to)
+// that fans out to the DSPs, not a direct DSP URL.
 // Note: several singles reuse the same album cover on the legacy site (the three
 // "Pioneer"-era tracks share the Pioneer art; the self-titled/remastered tracks
 // share that cover) -- reproduced faithfully here.
 export const RELEASES: Release[] = [
   {
+    title: "You Lie (Forever Version)",
+    year: "2026",
+    cta: "Listen",
+    href: "https://thebandperry.ffm.to/youlie-kb.OWE",
+    art: "/images/music/you-lie-forever-version.jpg",
+    artAlt: "You Lie (Forever Version) single cover art by The Band Perry with Kaitlin Butts",
+  },
+  {
+    title: "Kill It",
+    year: "2026",
+    cta: "Listen",
+    href: "https://thebandperry.ffm.to/killit.OWE",
+    art: "/images/music/kill-it.jpg",
+    artAlt: "Kill It single cover art by The Band Perry",
+  },
+  {
+    title: "Buzzards",
+    year: "2026",
+    cta: "Listen",
+    href: "https://thebandperry.ffm.to/buzzards.OWE",
+    art: "/images/music/buzzards.jpg",
+    artAlt: "Buzzards single cover art by The Band Perry",
+  },
+  {
     title: "Psychological",
     year: "2026",
-    cta: "Pre-Save",
+    cta: "Listen",
     href: "https://thebandperry.ffm.to/psychological.OWE",
     art: "/images/music/psychological.jpg",
     artAlt: "Psychological single cover art by The Band Perry",
