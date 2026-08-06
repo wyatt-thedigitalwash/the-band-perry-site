@@ -22,7 +22,17 @@ export function HomeFooterBar() {
         <SocialLinks />
       </div>
 
-      <p className="flex flex-wrap items-center justify-center gap-x-2.5 text-[10px] uppercase tracking-wide text-[#FAFAFA]/70 sm:justify-self-end sm:justify-end">
+      {/* Mobile: the six legal links collapse to a single "Legal" link into the
+          /legal hub so the footer stays one clean line. */}
+      <p className="flex items-center justify-center gap-x-2.5 text-[10px] uppercase tracking-wide text-[#FAFAFA]/70 sm:hidden">
+        <Link href="/legal" className="transition-opacity hover:opacity-70">
+          Legal
+        </Link>
+        <span aria-hidden className="text-[#FAFAFA]/30">/</span>
+        <CookieChoicesLink className="uppercase tracking-wide transition-opacity hover:opacity-70" />
+      </p>
+
+      <p className="hidden flex-wrap items-center justify-center gap-x-2.5 text-[10px] uppercase tracking-wide text-[#FAFAFA]/70 sm:flex sm:justify-self-end sm:justify-end">
         {LEGAL_LINKS.map((link, i) => (
           <span key={link.label} className="flex items-center gap-2.5">
             {i > 0 && <span aria-hidden className="text-[#FAFAFA]/30">/</span>}
