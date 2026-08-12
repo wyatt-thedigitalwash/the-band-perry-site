@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
+import { pageUrls } from "@/lib/seo";
 import LegalArticle, { type Block, type Run } from "@/components/legal/LegalArticle";
 import { BODIES, LEGAL_EMAIL, OPTOUT_EMAIL, mailto, SUBJECTS } from "@/components/legal/links";
 
 export const metadata: Metadata = {
-  title: "Terms & Conditions",
+  title: "Terms & Conditions | The Band Perry",
   description:
     "Terms and Conditions governing use of the websites and mobile apps operated by Borchetta Entertainment Group, LLC and its affiliates.",
-  alternates: { canonical: "https://bandperry.com/legal/terms" },
+  ...pageUrls("/legal/terms"),
   robots: { index: false, follow: true },
 };
 
@@ -526,5 +529,15 @@ const blocks: Block[] = [
 ];
 
 export default function TermsPage() {
-  return <LegalArticle title="Terms & Conditions" blocks={blocks} />;
+  return (
+    <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Legal & Policies", path: "/legal" },
+          { name: "Terms & Conditions", path: "/legal/terms" },
+        ])}
+      />
+      <LegalArticle title="Terms & Conditions" blocks={blocks} />
+    </>
+  );
 }

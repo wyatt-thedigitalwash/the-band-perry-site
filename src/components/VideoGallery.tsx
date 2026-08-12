@@ -65,11 +65,14 @@ function FeaturedVideo({
           <PlayGlyph large />
         </div>
         <div className="absolute inset-x-0 bottom-0 p-5 text-center md:p-8">
-          <span
+          {/* The spotlight title is a real heading, not decorative type: it
+              names the featured video the same way the year markers below name
+              their groups. `block` is kept so the tag swap is invisible. */}
+          <h2
             className={`${kurilian.className} block text-[26px] uppercase leading-tight tracking-[0.12em] text-[#fafafa] md:text-[40px]`}
           >
             {video.title}
-          </span>
+          </h2>
           {video.featuring ? (
             <span className="mt-1 block text-sm text-[#fafafa]/80">
               {video.featuring}

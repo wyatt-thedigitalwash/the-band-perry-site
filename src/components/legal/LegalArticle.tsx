@@ -78,7 +78,7 @@ function Runs({ runs }: { runs: Run[] }) {
   );
 }
 
-function BlockView({ block }: { block: Block }) {
+function BlockView({ block, promoteH3 }: { block: Block; promoteH3: boolean }) {
   switch (block.type) {
     case "h2":
       return (
@@ -90,16 +90,22 @@ function BlockView({ block }: { block: Block }) {
           {block.text}
         </h2>
       );
-    case "h3":
+    case "h3": {
+      // On policies whose sections are all one tier (Terms, DMCA,
+      // Cybersecurity), those sections sit directly under the page h1, so they
+      // render as h2 to avoid an h1 -> h3 jump. Only the tag changes; the
+      // smaller h3 type scale is kept so the page looks exactly as before.
+      const Tag = promoteH3 ? "h2" : "h3";
       return (
-        <h3
+        <Tag
           id={block.id}
           className={`mt-8 font-display text-[19px] md:text-[22px] ${block.u ? "underline" : ""}`}
           style={{ color: "var(--text-accent)", scrollMarginTop: "7rem" }}
         >
           {block.text}
-        </h3>
+        </Tag>
       );
+    }
     case "p":
       return (
         <p
@@ -152,9 +158,17 @@ export default function LegalArticle({
     if (el) el.scrollIntoView({ behavior: "instant", block: "start" });
   }, []);
 
+  // Policies that never use an h2 have no second tier to nest under, so their
+  // h3 blocks are the top-level sections. See BlockView.
+  const promoteH3 = !blocks.some((b) => b.type === "h2");
+
   return (
-    <>
-      <section data-bg="primary" className="bg-background-primary px-5 pt-36 pb-4 lg:px-12">
+    <main id="main-content">
+      <section
+        aria-label="Policy title"
+        data-bg="primary"
+        className="bg-background-primary px-5 pt-36 pb-4 lg:px-12"
+      >
         <div className="mx-auto max-w-[820px]">
           <Link href="/legal" className="font-body text-sm text-text-accent/70 hover:text-text-header">
             &larr; All Policies
@@ -166,13 +180,17 @@ export default function LegalArticle({
         </div>
       </section>
 
-      <section data-bg="primary" className="bg-background-primary px-5 pb-20 md:pb-28 lg:px-12">
+      <section
+        aria-label="Policy text"
+        data-bg="primary"
+        className="bg-background-primary px-5 pb-20 md:pb-28 lg:px-12"
+      >
         <article className="legal-prose mx-auto max-w-[820px] font-body text-[15px] leading-[1.75] text-text-accent md:text-base">
           {blocks.map((b, i) => (
-            <BlockView key={i} block={b} />
+            <BlockView key={i} block={b} promoteH3={promoteH3} />
           ))}
         </article>
       </section>
-    </>
+    </main>
   );
 }

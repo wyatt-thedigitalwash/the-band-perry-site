@@ -18,7 +18,7 @@ const NAV_LINKS = [
   { label: "Shop", href: "https://thebandperry.colortestmerch.com/", external: true },
   { label: "Music", href: "/music", external: false },
   { label: "Videos", href: "/videos", external: false },
-  { label: "About", href: "/about", external: false },
+  { label: "Band", href: "/band", external: false },
   { label: "Subscribe", href: "https://beacons.ai/thebandperry/emaillist", external: true },
 ] as const;
 
@@ -47,12 +47,16 @@ export function SiteHeader() {
         </Link>
 
         <nav
-          aria-label="Primary"
+          aria-label="Main navigation"
           className={`${kurilian.className} flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 sm:gap-x-8`}
         >
           {NAV_LINKS.map(({ label, href, external }) => {
+            // Padding grows the tap target to 44px tall and ~56px wide; the
+            // matching negative margins hand that space back to the row, so
+            // the nav renders exactly where it did before. The horizontal pad
+            // stays under the 20px gap so neighbouring targets never overlap.
             const className =
-              "text-[13px] uppercase tracking-[0.2em] text-[#FAFAFA] transition-colors duration-200 hover:text-[#aadcf8] sm:text-sm";
+              "-my-3 -mx-2 px-2 py-3 text-[13px] uppercase tracking-[0.2em] text-[#FAFAFA] transition-colors duration-200 hover:text-[#aadcf8] sm:text-sm";
 
             // Internal destinations must route through next/link. A plain <a>
             // triggers a full document load, which tears down and rebuilds this
@@ -67,6 +71,7 @@ export function SiteHeader() {
                 className={className}
               >
                 {label}
+                <span className="sr-only"> (opens in new tab)</span>
               </a>
             ) : (
               <Link key={label} href={href} className={className}>

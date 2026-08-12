@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
+import { pageUrls } from "@/lib/seo";
 import LegalArticle, { type Block } from "@/components/legal/LegalArticle";
 
 export const metadata: Metadata = {
-  title: "Cybersecurity Policy",
+  title: "Cybersecurity Policy | The Band Perry",
   description:
     "Cybersecurity and Security Incident Disclaimer for the websites operated by Borchetta Entertainment Group, LLC.",
-  alternates: { canonical: "https://bandperry.com/legal/cybersecurity" },
+  ...pageUrls("/legal/cybersecurity"),
   robots: { index: false, follow: true },
 };
 
@@ -90,5 +93,15 @@ const blocks: Block[] = [
 ];
 
 export default function CybersecurityPolicyPage() {
-  return <LegalArticle title="Cybersecurity and Security Incident Disclaimer" blocks={blocks} />;
+  return (
+    <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Legal & Policies", path: "/legal" },
+          { name: "Cybersecurity Policy", path: "/legal/cybersecurity" },
+        ])}
+      />
+      <LegalArticle title="Cybersecurity and Security Incident Disclaimer" blocks={blocks} />
+    </>
+  );
 }

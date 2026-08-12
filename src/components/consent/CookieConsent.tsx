@@ -11,6 +11,7 @@ import {
   writeConsent,
 } from "./consent";
 import { applyConsent } from "./injectScripts";
+import { useFocusTrap } from "@/lib/use-focus-trap";
 
 const NON_NECESSARY: Category[] = ["analytics", "advertising", "functional", "social"];
 
@@ -25,6 +26,11 @@ export default function CookieConsent() {
   const [showModal, setShowModal] = useState(false);
   const [draft, setDraft] = useState<Consent>(() => emptyConsent(false));
   const applied = useRef<Consent | null>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  // Tab stays inside the preferences dialog; focus returns to whatever opened
+  // it (the banner's Manage button or the floating Cookie Choices pill).
+  useFocusTrap(modalRef, showModal);
 
   // On mount: load any saved choice and inject the consented scripts. A
   // first-time visitor (no saved choice) sees the banner right away -- this
@@ -153,13 +159,19 @@ export default function CookieConsent() {
             if (e.target === e.currentTarget) closeModal();
           }}
         >
-          <div className="relative max-h-[88vh] w-full max-w-[540px] overflow-y-auto border border-text-body/20 bg-background-alt p-6 shadow-2xl sm:p-8">
+          <div
+            ref={modalRef}
+            className="relative max-h-[88vh] w-full max-w-[540px] overflow-y-auto border border-text-body/20 bg-background-alt p-6 shadow-2xl sm:p-8"
+          >
             {/* Close */}
             <button
               type="button"
               onClick={closeModal}
               aria-label="Close cookie preferences"
-              className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full text-text-accent/70 transition-colors hover:bg-white/10 hover:text-text-accent"
+              // after:-inset-1.5 stretches the hit area from 32px to 44px
+              // without painting anything, so the hover circle stays its
+              // current size while the tap target reaches the minimum.
+              className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full text-text-accent/70 transition-colors hover:bg-white/10 hover:text-text-accent after:absolute after:-inset-1.5 after:content-['']"
             >
               <span aria-hidden="true" className="text-xl leading-none">
                 &times;

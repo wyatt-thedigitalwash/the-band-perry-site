@@ -4,11 +4,13 @@ import PageTransition from "@/components/PageTransition";
 import { HeroVideoBackground } from "@/components/HeroVideoBackground";
 import { HeroNavButtons } from "@/components/HeroNavButtons";
 import { HomeFooterBar } from "@/components/HomeFooterBar";
+import { pageUrls } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "The Band Perry | Official Website",
   description:
-    "Discover The Band Perry's latest music, tour dates, and merchandise. Stay updated with news and join fans in celebrating country music success.",
+    "The official site of The Band Perry. Stream the new music, watch the official videos, browse upcoming tour dates and tickets, and shop official merch.",
+  ...pageUrls("/"),
 };
 
 export default function Home() {
@@ -20,15 +22,24 @@ export default function Home() {
       <div className="relative flex h-dvh w-full flex-col overflow-hidden overscroll-none bg-black">
         <HeroVideoBackground />
 
-        <main className="relative flex flex-1 flex-col items-center justify-center gap-10 px-6 sm:gap-12">
-          <Image
-            src="/images/logo-horizontal-wordmark-blue-textured.png"
-            alt="The Band Perry"
-            width={2326}
-            height={583}
-            priority
-            className="w-[min(90vw,640px)] h-auto"
-          />
+        <main
+          id="main-content"
+          className="relative flex flex-1 flex-col items-center justify-center gap-10 px-6 sm:gap-12"
+        >
+          {/* The wordmark is the splash page's only title, so it carries the
+              h1 rather than the page having none. Tailwind's preflight strips
+              the heading's default size and margin, so the lockup renders
+              exactly as it did when the image stood alone. */}
+          <h1>
+            <Image
+              src="/images/logo-horizontal-wordmark-blue-textured.png"
+              alt="The Band Perry"
+              width={2326}
+              height={583}
+              priority
+              className="w-[min(90vw,640px)] h-auto"
+            />
+          </h1>
           <HeroNavButtons />
         </main>
 

@@ -11,6 +11,7 @@ export function SubscribeSection() {
   return (
     <section
       id="subscribe"
+      aria-label="Email signup"
       data-bg="primary"
       className="px-5 py-20 md:py-28 lg:px-12"
     >

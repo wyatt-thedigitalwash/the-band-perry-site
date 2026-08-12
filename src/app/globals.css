@@ -42,6 +42,33 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Accessibility: visible keyboard focus
+   Several controls set `outline-none` and swap a border colour on focus, which
+   is easy to miss and does nothing for elements that have no border. This gives
+   every keyboard-focused element the same accent ring. :focus-visible (not
+   :focus) means pointer users never see it, so the visual design is unchanged
+   for them. The offset keeps the ring clear of the accent-filled buttons, where
+   a flush blue-on-blue outline would disappear. */
+:focus-visible {
+  outline: 2px solid #aadcf8;
+  outline-offset: 2px;
+  border-radius: 1px;
+}
+
+/* Accessibility: respect a reduced-motion preference.
+   The page cross-fade already opts out via matchMedia; this covers the CSS
+   transitions (hover washes, image zooms, the hero video fade-in) site-wide. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* Concave "bitten" corners: each corner gets a quarter-circle scooped out instead of
    a normal convex round.
 
@@ -152,7 +179,8 @@ section[data-bg="dark"] + section[data-bg="dark"] {
 .cc-btn {
   display: block;
   width: 100%;
-  padding: 0.6rem 1rem;
+  /* 0.6rem left these at 41px tall; 0.7rem clears the 44px tap-target floor. */
+  padding: 0.7rem 1rem;
   font-family: var(--font-display);
   font-size: 13px;
   text-transform: uppercase;

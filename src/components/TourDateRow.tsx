@@ -14,7 +14,10 @@ import { kurilian } from "@/lib/fonts";
 // Asymmetric horizontal padding: letter-spacing is applied after every glyph
 // including the last, so equal padding leaves the label visually shifted left
 // inside the box. The right pad sheds exactly one tracking step to re-centre it.
-const ctaClass = `${kurilian.className} border border-[#aadcf8] bg-[#aadcf8] py-1.5 pl-5 pr-[calc(1.25rem-0.2em)] text-[11px] uppercase tracking-[0.2em] text-[#292929] transition-colors duration-200 hover:bg-transparent hover:text-[#aadcf8]`;
+// The button is 31px tall by design. `after:-inset-y-2` extends only the hit
+// area to 47px -- it paints nothing, so the filled pill keeps its exact size,
+// and staying vertical means the Tickets/RSVP pair never overlaps.
+const ctaClass = `${kurilian.className} relative border border-[#aadcf8] bg-[#aadcf8] py-1.5 pl-5 pr-[calc(1.25rem-0.2em)] text-[11px] uppercase tracking-[0.2em] text-[#292929] transition-colors duration-200 hover:bg-transparent hover:text-[#aadcf8] after:absolute after:-inset-y-2 after:inset-x-0 after:content-['']`;
 
 /**
  * Rule between tour rows: a single hairline that fades to transparent at both
@@ -61,17 +64,21 @@ export function TourDateRow({ date }: { date: TourDate }) {
               {month}
             </div>
             <div className="mt-1.5 text-[32px] leading-none text-[#fafafa]">{day}</div>
-            <div className="-mr-[0.25em] mt-2 text-[10px] uppercase leading-none tracking-[0.25em] text-[#fafafa]/45">
+            {/* /45 measured 4.24:1 on black, under the 4.5:1 floor for text
+                this size. /50 clears it at 5.10:1. */}
+            <div className="-mr-[0.25em] mt-2 text-[10px] uppercase leading-none tracking-[0.25em] text-[#fafafa]/50">
               {weekday}
             </div>
           </div>
 
           <div className="min-w-0">
-            <h3
+            {/* Each show is a top-level item under the page's "Tour" h1, so the
+                venue name is an h2. Tag only -- the type scale is unchanged. */}
+            <h2
               className={`${kurilian.className} text-[17px] uppercase leading-snug tracking-[0.12em] text-[#fafafa] sm:text-[19px]`}
             >
               {date.venueName}
-            </h3>
+            </h2>
             <p className="mt-2 flex flex-wrap items-center gap-x-2.5 gap-y-1 font-body text-[11px] uppercase text-[#fafafa]/55">
               {location ? <span>{location}</span> : null}
               {location ? (
@@ -86,14 +93,32 @@ export function TourDateRow({ date }: { date: TourDate }) {
 
         {/* Stacked below on mobile, indented to line up with the venue name:
             74px date column + 20px (gap-5) = 94px. */}
+        {/* "Tickets" / "RSVP" repeat down the whole list, so each link's
+            accessible name names the show it belongs to. */}
         <div className="flex shrink-0 items-center gap-3 pl-[94px] sm:pl-0">
           {date.ticketUrl ? (
-            <a href={date.ticketUrl} target="_blank" rel="noopener noreferrer" className={ctaClass}>
+            <a
+              href={date.ticketUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${date.free ? "Free entry" : "Tickets"} for ${date.venueName}${
+                location ? `, ${location}` : ""
+              } (opens in new tab)`}
+              className={ctaClass}
+            >
               {date.free ? "Free" : "Tickets"}
             </a>
           ) : null}
           {date.rsvpUrl ? (
-            <a href={date.rsvpUrl} target="_blank" rel="noopener noreferrer" className={ctaClass}>
+            <a
+              href={date.rsvpUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`RSVP for ${date.venueName}${
+                location ? `, ${location}` : ""
+              } (opens in new tab)`}
+              className={ctaClass}
+            >
               RSVP
             </a>
           ) : null}

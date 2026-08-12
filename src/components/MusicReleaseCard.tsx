@@ -32,6 +32,11 @@ export function MusicReleaseCard({ release }: { release: Release }) {
         <span className="mt-2 inline-block text-[11px] uppercase text-[#aadcf8] transition-opacity duration-200 group-hover:opacity-70">
           {release.cta}
         </span>
+        {/* "Listen" repeated down the grid is meaningless out of context, so
+            the link's accessible name carries the title and destination. */}
+        <span className="sr-only">
+          {` ${release.title} on streaming services (opens in new tab)`}
+        </span>
       </div>
     </a>
   );

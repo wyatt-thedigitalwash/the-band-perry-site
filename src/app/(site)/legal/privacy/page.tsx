@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
+import { pageUrls } from "@/lib/seo";
 import LegalArticle, { type Block, type Run } from "@/components/legal/LegalArticle";
 import { BODIES, LEGAL_EMAIL, OPTOUT_EMAIL, mailto, SUBJECTS } from "@/components/legal/links";
 
 export const metadata: Metadata = {
-  title: "Privacy & Cookies Policy",
+  title: "Privacy & Cookies Policy | The Band Perry",
   description:
     "Privacy Policy and Cookies Policy for the Label-related and artist-related websites operated by Nashville Harbor Records & Entertainment, LLC and affiliates.",
-  alternates: { canonical: "https://bandperry.com/legal/privacy" },
+  ...pageUrls("/legal/privacy"),
   robots: { index: false, follow: true },
 };
 
@@ -659,5 +662,15 @@ const blocks: Block[] = [
 ];
 
 export default function PrivacyPolicyPage() {
-  return <LegalArticle title="Privacy & Cookies Policy" blocks={blocks} />;
+  return (
+    <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Legal & Policies", path: "/legal" },
+          { name: "Privacy & Cookies Policy", path: "/legal/privacy" },
+        ])}
+      />
+      <LegalArticle title="Privacy & Cookies Policy" blocks={blocks} />
+    </>
+  );
 }

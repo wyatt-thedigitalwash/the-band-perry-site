@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { kurilian } from "@/lib/fonts";
+import { useFocusTrap } from "@/lib/use-focus-trap";
 import type { Video } from "@/lib/videos";
 
 /**
@@ -18,6 +19,11 @@ export function VideoLightbox({
   onClose: () => void;
 }) {
   const closeRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+
+  // Tab stays on the close button and the YouTube frame; focus returns to the
+  // video card that opened the player.
+  useFocusTrap(dialogRef, true);
 
   useEffect(() => {
     closeRef.current?.focus();
@@ -38,6 +44,7 @@ export function VideoLightbox({
 
   return (
     <div
+      ref={dialogRef}
       role="dialog"
       aria-modal="true"
       aria-label={`Now playing: ${video.title}`}

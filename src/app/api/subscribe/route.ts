@@ -4,10 +4,24 @@ import { subscribeToMailchimp, type MailchimpResult } from "@/lib/mailchimp";
 import { subscribeToLaylo, type LayloResult } from "@/lib/laylo";
 
 // In-memory rate limiting: IP -> { count, resetAt }
+//
+// Per-instance and best-effort by design: serverless means each warm instance
+// keeps its own map, so the real ceiling is 3 x (number of live instances).
+// That is enough to blunt a scripted flood without a datastore; if abuse ever
+// becomes a real problem this needs to move to shared storage.
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
-const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_MAX = 3;
 const RATE_LIMIT_WINDOW = 5 * 60 * 1000; // 5 minutes
 
+// The form posts ~7 short fields; anything approaching this is not a real
+// submission. Checked before req.json() so an oversized body is rejected
+// instead of being parsed into memory.
+const MAX_BODY_BYTES = 8 * 1024;
+
+// Assumes the platform (Vercel) sets x-forwarded-for itself -- it overwrites
+// any client-supplied value, so the leftmost entry is the real client IP. On a
+// host that merely passes the header through, this would be spoofable and the
+// limiter would need the connection address instead.
 function getClientIp(req: NextRequest): string {
   return (
     req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
@@ -43,8 +57,16 @@ export async function POST(req: NextRequest) {
     if (isRateLimited(ip)) {
       return NextResponse.json(
         { error: "Too many requests. Please try again later." },
-        { status: 429 }
+        {
+          status: 429,
+          headers: { "Retry-After": String(RATE_LIMIT_WINDOW / 1000) },
+        }
       );
+    }
+
+    const declaredLength = Number(req.headers.get("content-length") ?? 0);
+    if (declaredLength > MAX_BODY_BYTES) {
+      return NextResponse.json({ error: "Request too large." }, { status: 413 });
     }
 
     const body = await req.json().catch(() => null);

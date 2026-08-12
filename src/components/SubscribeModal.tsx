@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import SubscribeForm from "@/components/SubscribeForm";
+import { useFocusTrap } from "@/lib/use-focus-trap";
 
 export default function SubscribeModal({
   open,
@@ -10,6 +11,11 @@ export default function SubscribeModal({
   open: boolean;
   onClose: () => void;
 }) {
+  const panelRef = useRef<HTMLDivElement>(null);
+
+  // Tab cycles within the form; focus returns to the trigger when it closes.
+  useFocusTrap(panelRef, open);
+
   // Escape to close + lock body scroll while the dialog is open.
   useEffect(() => {
     if (!open) return;
@@ -44,12 +50,17 @@ export default function SubscribeModal({
       />
 
       {/* Panel */}
-      <div className="relative z-10 max-h-[90dvh] w-full max-w-md overflow-y-auto border border-[#AADCF8]/30 bg-[#0A0A0A] p-6 sm:p-8 shadow-2xl">
+      <div
+        ref={panelRef}
+        className="relative z-10 max-h-[90dvh] w-full max-w-md overflow-y-auto border border-[#AADCF8]/30 bg-[#0A0A0A] p-6 sm:p-8 shadow-2xl"
+      >
         <button
           type="button"
           onClick={onClose}
           aria-label="Close subscribe form"
-          className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center text-[#FAFAFA]/60 transition-colors hover:text-[#AADCF8]"
+          // after:-inset-1.5 stretches the hit area from 32px to 44px without
+          // painting anything, so the tap target grows and the glyph does not.
+          className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center text-[#FAFAFA]/60 transition-colors hover:text-[#AADCF8] after:absolute after:-inset-1.5 after:content-['']"
         >
           <span aria-hidden="true" className="text-xl leading-none">&times;</span>
         </button>

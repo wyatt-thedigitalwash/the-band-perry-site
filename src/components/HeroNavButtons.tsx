@@ -10,7 +10,7 @@ const NAV_BUTTONS = [
   { label: "Shop", href: "https://thebandperry.colortestmerch.com/", external: true },
   { label: "Music", href: "/music", external: false },
   { label: "Videos", href: "/videos", external: false },
-  { label: "About", href: "/about", external: false },
+  { label: "Band", href: "/band", external: false },
 ] as const;
 
 // On mobile the buttons sit in a fixed 3x2 grid (see the nav element), so every
@@ -29,7 +29,7 @@ export function HeroNavButtons() {
   return (
     <>
       <nav
-        aria-label="Primary"
+        aria-label="Main navigation"
         className="grid w-full max-w-[420px] grid-cols-3 gap-3 sm:flex sm:w-auto sm:max-w-none sm:flex-wrap sm:items-center sm:justify-center sm:gap-4"
       >
         {/* Internal destinations route through next/link so leaving the splash
@@ -45,6 +45,7 @@ export function HeroNavButtons() {
               className={buttonClass}
             >
               {label}
+              <span className="sr-only"> (opens in new tab)</span>
             </a>
           ) : (
             <Link key={label} href={href} className={buttonClass}>

@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
+import { pageUrls } from "@/lib/seo";
 import LegalArticle, { type Block } from "@/components/legal/LegalArticle";
 import { BODIES, LEGAL_EMAIL, mailto, SUBJECTS } from "@/components/legal/links";
 
 export const metadata: Metadata = {
-  title: "Copyright Infringement Policy (DMCA)",
+  title: "Copyright Infringement Policy (DMCA) | The Band Perry",
   description:
     "Copyright Infringement Policy and DMCA Notice procedure for the websites operated by Borchetta Entertainment Group, LLC.",
-  alternates: { canonical: "https://bandperry.com/legal/dmca" },
+  ...pageUrls("/legal/dmca"),
   robots: { index: false, follow: true },
 };
 
@@ -99,5 +102,15 @@ const blocks: Block[] = [
 ];
 
 export default function DmcaPolicyPage() {
-  return <LegalArticle title="Copyright Infringement Policy (DMCA)" blocks={blocks} />;
+  return (
+    <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Legal & Policies", path: "/legal" },
+          { name: "Copyright Infringement Policy (DMCA)", path: "/legal/dmca" },
+        ])}
+      />
+      <LegalArticle title="Copyright Infringement Policy (DMCA)" blocks={blocks} />
+    </>
+  );
 }

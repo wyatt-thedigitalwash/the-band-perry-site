@@ -31,7 +31,7 @@ function formatUsPhone(value: string): string {
 }
 
 const inputBase =
-  "w-full bg-transparent border px-3 py-2.5 text-sm text-[#FAFAFA] placeholder:text-[#FAFAFA]/40 outline-none transition-colors focus:border-[#AADCF8]";
+  "w-full bg-transparent border px-3 py-3 text-sm text-[#FAFAFA] placeholder:text-[#FAFAFA]/50 outline-none transition-colors focus:border-[#AADCF8]";
 const fieldBorder = (invalid: boolean) =>
   invalid ? "border-red-400" : "border-[#FAFAFA]/25";
 
@@ -151,16 +151,17 @@ export default function SubscribeForm({
           <label htmlFor={id("phone")} className="sr-only">Phone Number</label>
           {isNorthAmerica ? (
             <div className={`flex items-stretch border bg-transparent ${fieldBorder(errorField === "phone")} focus-within:border-[#AADCF8]`}>
-              <span className="flex items-center pl-3 pr-2 text-sm text-[#FAFAFA]/40 select-none" aria-hidden="true">+1</span>
+              <span className="flex items-center pl-3 pr-2 text-sm text-[#FAFAFA]/50 select-none" aria-hidden="true">+1</span>
               <input ref={phoneRef} id={id("phone")} type="tel" name="phone" inputMode="numeric"
                 placeholder="555-555-5555" required aria-required="true" aria-invalid={errorField === "phone"}
                 aria-describedby={status === "error" ? id("error") : undefined}
                 autoComplete="tel" value={phone} onChange={(e) => setPhone(formatUsPhone(e.target.value))}
-                className="w-full bg-transparent py-2.5 pr-3 text-sm text-[#FAFAFA] placeholder:text-[#FAFAFA]/40 outline-none border-0" />
+                className="w-full bg-transparent py-3 pr-3 text-sm text-[#FAFAFA] placeholder:text-[#FAFAFA]/50 outline-none border-0" />
             </div>
           ) : (
             <input ref={phoneRef} id={id("phone")} type="tel" name="phone" inputMode="tel"
               placeholder="Phone Number (optional)" aria-invalid={errorField === "phone"}
+              aria-describedby={status === "error" ? id("error") : undefined}
               autoComplete="tel" value={phone} onChange={(e) => setPhone(e.target.value)}
               className={`${inputBase} ${fieldBorder(errorField === "phone")}`} />
           )}
@@ -185,11 +186,11 @@ export default function SubscribeForm({
         </div>
 
         <button type="submit" disabled={status === "loading"}
-          className="mt-1 corner-inverted px-6 py-2.5 text-xs uppercase tracking-[0.2em] text-[#FAFAFA] transition-colors duration-200 hover:text-[#292929] disabled:opacity-50">
+          className="mt-1 corner-inverted px-6 py-3 text-xs uppercase tracking-[0.2em] text-[#FAFAFA] transition-colors duration-200 hover:text-[#292929] disabled:opacity-50">
           {status === "loading" ? "Subscribing..." : "Subscribe"}
         </button>
 
-        <p className="text-[10px] leading-relaxed text-[#FAFAFA]/40">
+        <p className="text-[10px] leading-relaxed text-[#FAFAFA]/55">
           By subscribing you agree to receive email and recurring automated marketing text
           messages. We will text you once to confirm your number, reply to opt in. Consent is
           not a condition of purchase. Message and data rates may apply. See Laylo&apos;s{" "}
@@ -199,7 +200,7 @@ export default function SubscribeForm({
         </p>
 
         {status === "error" && (
-          <p id={id("error")} role="alert" className="text-xs text-red-400">
+          <p id={id("error")} role="alert" className="text-sm text-red-400">
             {errorMessage || "Something went wrong. Please try again."}
           </p>
         )}

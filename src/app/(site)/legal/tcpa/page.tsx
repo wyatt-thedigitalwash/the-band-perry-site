@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
+import { pageUrls } from "@/lib/seo";
 import LegalArticle, { type Block, type Run } from "@/components/legal/LegalArticle";
 import { BODIES, OPTOUT_EMAIL, mailto, SUBJECTS } from "@/components/legal/links";
 
 export const metadata: Metadata = {
-  title: "TCPA Consent and Do Not Call Policy",
+  title: "TCPA Consent and Do Not Call Policy | The Band Perry",
   description:
     "Telephone communications, TCPA consent, and Do Not Call / internal suppression list policy for the websites operated by Borchetta Entertainment Group, LLC.",
-  alternates: { canonical: "https://bandperry.com/legal/tcpa" },
+  ...pageUrls("/legal/tcpa"),
   robots: { index: false, follow: true },
 };
 
@@ -179,5 +182,15 @@ const blocks: Block[] = [
 ];
 
 export default function TcpaPolicyPage() {
-  return <LegalArticle title="TCPA Consent and Do Not Call Policy" blocks={blocks} />;
+  return (
+    <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Legal & Policies", path: "/legal" },
+          { name: "TCPA Consent and Do Not Call Policy", path: "/legal/tcpa" },
+        ])}
+      />
+      <LegalArticle title="TCPA Consent and Do Not Call Policy" blocks={blocks} />
+    </>
+  );
 }
