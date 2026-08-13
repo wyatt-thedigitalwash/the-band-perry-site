@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import CookieConsent from "@/components/consent/CookieConsent";
+import RouteTracker from "@/components/consent/RouteTracker";
 import TermsGate from "@/components/consent/TermsGate";
 import AnchorScroll from "@/components/shared/AnchorScroll";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -82,6 +83,9 @@ export default function RootLayout({
         {/* Cookie consent banner. Shows once per new visitor, persisted in
             localStorage; injects nothing before consent is granted. */}
         <CookieConsent />
+        {/* Pageview tracking for client-side navigations. No-op until the
+            advertising pixels have been consented to and injected. */}
+        <RouteTracker />
         {/* Arbitration / class-action notice, shown once right after the cookie
             decision so it is never buried only in the footer. */}
         <TermsGate />
