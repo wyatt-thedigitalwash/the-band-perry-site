@@ -37,17 +37,6 @@ const nextConfig: NextConfig = {
 
       // The About page was renamed to Band.
       { source: '/about', destination: '/band', permanent: true },
-
-      // www -> apex. The live DNS already does this, and on Vercel the primary
-      // domain setting should handle it at the edge, so this rule normally
-      // never fires. It is here as a backstop for the case where that domain
-      // setting is missed during the cutover.
-      {
-        source: '/:path*',
-        has: [{ type: 'host', value: 'www.bandperry.com' }],
-        destination: 'https://bandperry.com/:path*',
-        permanent: true,
-      },
     ];
   },
   async headers() {

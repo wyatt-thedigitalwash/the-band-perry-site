@@ -5,7 +5,7 @@ import type { Metadata } from "next";
  * canonical URL, og:url, sitemap entry, robots Sitemap directive and JSON-LD
  * @id is derived from SITE_URL, so a domain change is a one-line edit here.
  */
-export const SITE_URL = "https://bandperry.com";
+export const SITE_URL = "https://www.bandperry.com";
 export const SITE_NAME = "The Band Perry";
 
 /**
