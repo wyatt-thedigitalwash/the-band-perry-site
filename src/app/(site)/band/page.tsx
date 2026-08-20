@@ -10,7 +10,7 @@ import { pageUrls } from "@/lib/seo";
 export const metadata: Metadata = {
   title: "Band | The Band Perry",
   description:
-    "Read the story of The Band Perry, the GRAMMY, CMA and ACM Award-winning duo behind If I Die Young, known for their genre-defying Appalachian gothic sound.",
+    "Read the story of The Band Perry, the GRAMMY, CMA and ACM Award-winning band behind If I Die Young, known for their genre-defying Appalachian gothic sound.",
   ...pageUrls("/band"),
 };
 
@@ -46,7 +46,7 @@ export default function BandPage() {
 
             <div className="space-y-5 font-body text-[15px] leading-[1.85] text-[#fafafa]/85 md:text-base">
               <p>
-                The Band Perry is a GRAMMY&reg;, CMA, and ACM Award-winning duo known for their
+                The Band Perry is a GRAMMY&reg;, CMA, and ACM Award-winning band known for their
                 genre-defying sound and bold artistic reinvention. Since bursting onto the scene with
                 their 9x Platinum smash hit &ldquo;If I Die Young,&rdquo; the Band, led by the artistic
                 eye and creative direction of lead singer / songwriter, Kimberly, have captivated
@@ -60,7 +60,7 @@ export default function BandPage() {
                 sold-out world tours, six #1 singles, multiple RIAA Platinum and Gold certifications,
                 and pioneering chart success. Their Appalachian gothic sound is amplified by heartfelt,
                 original storytelling, dynamic musicianship, and high-energy performance. Known for
-                pushing creative boundaries while staying rooted in Southern tradition, the duo
+                pushing creative boundaries while staying rooted in Southern tradition, the band
                 continues to evolve, both artistically and as individuals.
               </p>
             </div>

@@ -22,7 +22,7 @@ const ARTIST_ID = `${SITE_URL}/#artist`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
 
 const ARTIST_DESCRIPTION =
-  "The Band Perry is a GRAMMY, CMA, and ACM Award-winning country duo known for their genre-defying Appalachian gothic sound and the 9x Platinum single If I Die Young.";
+  "The Band Perry is a GRAMMY, CMA, and ACM Award-winning country band known for their genre-defying Appalachian gothic sound and the 9x Platinum single If I Die Young.";
 
 /** Reference to the MusicGroup node, for use inside other nodes. */
 const artistRef = { "@id": ARTIST_ID } as const;
