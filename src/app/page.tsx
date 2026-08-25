@@ -15,38 +15,41 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    // The splash sits outside the (site) route group, so it carries its own
-    // PageTransition -- that instance owns the fade-out when a visitor leaves
-    // home, the same way the group layout's instance does for every other page.
-    <PageTransition>
-      <div className="relative flex h-dvh w-full flex-col overflow-hidden overscroll-none bg-black">
-        <HeroVideoBackground />
+    <>
+      {/* The home page sits outside the (site) route group, so it carries its
+          own PageTransition -- that instance owns the fade-out when a visitor
+          leaves home, the same way the group layout's instance does for every
+          other page. */}
+      <PageTransition>
+        <div className="relative flex h-dvh w-full flex-col overflow-hidden overscroll-none bg-black">
+          <HeroVideoBackground />
 
-        <main
-          id="main-content"
-          className="relative flex flex-1 flex-col items-center justify-center gap-10 px-6 sm:gap-12"
-        >
-          {/* The wordmark is the splash page's only title, so it carries the
-              h1 rather than the page having none. Tailwind's preflight strips
-              the heading's default size and margin, so the lockup renders
-              exactly as it did when the image stood alone. */}
-          <h1>
-            <Image
-              src="/images/logo-horizontal-wordmark-blue-textured.png"
-              alt="The Band Perry"
-              width={2326}
-              height={583}
-              priority
-              className="w-[min(90vw,640px)] h-auto"
-            />
-          </h1>
-          <HeroNavButtons />
-        </main>
+          <main
+            id="main-content"
+            className="relative flex flex-1 flex-col items-center justify-center gap-10 px-6 sm:gap-12"
+          >
+            {/* The wordmark is the home page's only title, so it carries the
+                h1 rather than the page having none. Tailwind's preflight strips
+                the heading's default size and margin, so the lockup renders
+                exactly as it did when the image stood alone. */}
+            <h1>
+              <Image
+                src="/images/logo-horizontal-wordmark-blue-textured.png"
+                alt="The Band Perry"
+                width={2326}
+                height={583}
+                priority
+                className="w-[min(90vw,640px)] h-auto"
+              />
+            </h1>
+            <HeroNavButtons />
+          </main>
 
-        <footer className="relative w-full px-6 pb-6 sm:px-10 sm:pb-8">
-          <HomeFooterBar />
-        </footer>
-      </div>
-    </PageTransition>
+          <footer className="relative w-full px-6 pb-6 sm:px-10 sm:pb-8">
+            <HomeFooterBar />
+          </footer>
+        </div>
+      </PageTransition>
+    </>
   );
 }

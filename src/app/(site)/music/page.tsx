@@ -11,7 +11,7 @@ import { pageUrls } from "@/lib/seo";
 export const metadata: Metadata = {
   title: "Music | The Band Perry",
   description:
-    "Stream The Band Perry's new singles and greatest hits, from Psychological, Buzzards and Kill It back to If I Die Young, on every major streaming platform.",
+    "Pre-save Pistol, the new single from The Band Perry, and stream the rest of the catalog, from Buzzards and Kill It back to If I Die Young.",
   ...pageUrls("/music"),
 };
 
@@ -22,15 +22,25 @@ export default function MusicPage() {
       <JsonLd data={musicReleasesSchema()} />
 
       <main id="main-content" className="flex flex-1 flex-col">
-        <section aria-label="Page title" data-bg="primary" className="px-5 pt-36 pb-8 lg:px-12">
+        <section
+          aria-label="Page title"
+          data-bg="primary"
+          className="px-5 pt-36 pb-8 lg:px-12"
+        >
           <div className="mx-auto max-w-[1000px] text-center">
-            <h1 className={`${kurilian.className} text-[48px] uppercase tracking-[0.15em] text-[#aadcf8] md:text-[64px]`}>
+            <h1
+              className={`${kurilian.className} text-[48px] uppercase tracking-[0.15em] text-[#aadcf8] md:text-[64px]`}
+            >
               Music
             </h1>
           </div>
         </section>
 
-        <section aria-label="Releases" data-bg="primary" className="flex-1 px-5 pb-16 lg:px-12">
+        <section
+          aria-label="Releases"
+          data-bg="primary"
+          className="flex-1 px-5 pb-16 lg:px-12"
+        >
           <div className="mx-auto grid max-w-[1000px] grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 md:gap-x-8 md:gap-y-12">
             {RELEASES.map((release) => (
               <MusicReleaseCard key={release.title} release={release} />

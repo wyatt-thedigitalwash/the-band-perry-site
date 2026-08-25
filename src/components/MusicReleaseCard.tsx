@@ -8,6 +8,13 @@ import { kurilian } from "@/lib/fonts";
  * with a subtle zoom on hover, then title / year / CTA label beneath.
  */
 export function MusicReleaseCard({ release }: { release: Release }) {
+  // An unreleased track's link goes to a pre-save page, not to streaming, so
+  // the accessible name has to say so rather than promising something the
+  // destination cannot do yet.
+  const destination = release.cta.toLowerCase().startsWith("pre-save")
+    ? `Pre-save ${release.title}`
+    : `${release.title} on streaming services`;
+
   return (
     <a
       href={release.href}
@@ -26,7 +33,9 @@ export function MusicReleaseCard({ release }: { release: Release }) {
       </div>
 
       <div className="mt-4 text-center">
-        <h2 className={`${kurilian.className} text-[20px] uppercase leading-tight tracking-[0.12em] text-[#fafafa] md:text-[22px]`}>
+        <h2
+          className={`${kurilian.className} text-[20px] uppercase leading-tight tracking-[0.12em] text-[#fafafa] md:text-[22px]`}
+        >
           {release.title}
         </h2>
         <span className="mt-2 inline-block text-[11px] uppercase text-[#aadcf8] transition-opacity duration-200 group-hover:opacity-70">
@@ -34,9 +43,7 @@ export function MusicReleaseCard({ release }: { release: Release }) {
         </span>
         {/* "Listen" repeated down the grid is meaningless out of context, so
             the link's accessible name carries the title and destination. */}
-        <span className="sr-only">
-          {` ${release.title} on streaming services (opens in new tab)`}
-        </span>
+        <span className="sr-only">{` ${destination} (opens in new tab)`}</span>
       </div>
     </a>
   );

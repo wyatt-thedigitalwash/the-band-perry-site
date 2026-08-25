@@ -8,8 +8,8 @@ import { SiteHeader } from "@/components/SiteHeader";
  * re-created the wordmark <img> on every route change, which made the logo
  * visibly flash. `(site)` is a route group, so it adds no URL segment.
  *
- * The home splash at `/` sits outside this group and keeps its header-free,
- * full-screen treatment. `SiteHeader` is `position: fixed`, so it imposes no
+ * The home page at `/` sits outside this group and keeps its header-free,
+ * full-screen treatment (and, in front of it, the Pistol release gate). `SiteHeader` is `position: fixed`, so it imposes no
  * layout on the pages it sits above; each page still owns its own background
  * wrapper and top padding.
  */

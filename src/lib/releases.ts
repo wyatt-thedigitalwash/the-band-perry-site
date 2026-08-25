@@ -1,3 +1,5 @@
+import { PISTOL } from "./pistol";
+
 export type Release = {
   title: string;
   year: string;
@@ -7,7 +9,8 @@ export type Release = {
   artAlt: string;
 };
 
-// The 2026 singles lead, newest first; the rest mirrors the legacy
+// Pistol leads as the current release, then the rest of the 2026 singles,
+// newest first; the rest mirrors the legacy
 // bandperry.com/music carousel. Every CTA is a Feature.fm smart link (ffm.to)
 // that fans out to the DSPs, not a direct DSP URL.
 // Note: several singles reuse the same album cover on the legacy site (the three
@@ -15,12 +18,24 @@ export type Release = {
 // share that cover) -- reproduced faithfully here.
 export const RELEASES: Release[] = [
   {
+    // Title, link and artwork come from the splash gate's release constants so
+    // the pre-save URL is defined once. On release day, changing `ctaLabel`
+    // there does not reach this entry -- flip `cta` below to "Listen" too.
+    title: PISTOL.title,
+    year: "2026",
+    cta: "Pre-Save",
+    href: PISTOL.smartLink,
+    art: PISTOL.cover.src,
+    artAlt: PISTOL.coverAlt,
+  },
+  {
     title: "You Lie (Forever Version)",
     year: "2026",
     cta: "Listen",
     href: "https://thebandperry.ffm.to/youlie-kb.OWE",
     art: "/images/music/you-lie-forever-version.jpg",
-    artAlt: "You Lie (Forever Version) single cover art by The Band Perry with Kaitlin Butts",
+    artAlt:
+      "You Lie (Forever Version) single cover art by The Band Perry with Kaitlin Butts",
   },
   {
     title: "Kill It",

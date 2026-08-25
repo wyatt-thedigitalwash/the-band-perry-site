@@ -27,6 +27,13 @@
   --color-text-accent: var(--text-accent);
   --font-display: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   --font-body: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+
+  /* Freight Sans Pro, the release toolkit's sub-head / body face, served from
+     the artist's Adobe Fonts kit (linked in the root layout). Kurilian, the
+     headline face, is self-hosted instead -- see src/lib/fonts.ts -- because
+     that kit ships Freight Sans only. Generates the `font-freight` utility. */
+  --font-freight: "freight-sans-pro", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Arial, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -40,6 +47,20 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Interactive affordance: pointer cursor on buttons.
+   Tailwind v4's Preflight dropped v3's `button { cursor: pointer }`, so a
+   <button> falls back to the browser default arrow while an <a> styled exactly
+   the same shows a hand. On the splash gate that put "Enter Site" and
+   "Pre-Save" side by side with different cursors. Restoring it here rather
+   than per-component keeps every button in the site consistent -- this is the
+   remedy Tailwind documents for the change. `:not(:disabled)` leaves disabled
+   controls (e.g. the subscribe form's submit while posting) with the default
+   arrow, which is the correct signal that they cannot be pressed. */
+button:not(:disabled),
+[role="button"]:not(:disabled) {
+  cursor: pointer;
 }
 
 /* Accessibility: visible keyboard focus
@@ -207,4 +228,59 @@ section[data-bg="dark"] + section[data-bg="dark"] {
   background: #aadcf8;
   color: #292929;
   border-color: #aadcf8;
+}
+
+
+/* Splash Gate ("Pistol" release)
+   The gate is server-rendered so it is painted with the very first frame rather
+   than dropping over an already-visible page. For a visitor who entered earlier
+   in the session that would invert the problem, so the root layout runs a
+   blocking script that stamps a class on <html> and these rules hide the
+   overlay before it can ever paint. Class-plus-CSS, not JS alone: only CSS
+   resolves before the first paint.
+
+   Two classes, not one. `splash-entered` means the visitor took an entry
+   action; `splash-exempt` only means the overlay is suppressed because /legal
+   is never gated. Both hide it, but only the first counts as consent -- see
+   src/components/consent/useSplashEntered.ts. */
+html.splash-entered #splash-overlay,
+html.splash-exempt #splash-overlay {
+  display: none;
+}
+
+/* `display: none` cannot be transitioned, so dismissal fades this out first and
+   only then sets the class that hides it. Keep in sync with FADE_MS. */
+#splash-overlay {
+  transition: opacity 450ms ease-in-out;
+}
+#splash-overlay.is-exiting {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Lock scroll while the gate is up, but never on an exempt (legal) route,
+   where the page underneath is the whole point. CSS rather than the JS
+   body-overflow toggle this replaces: it applies from the first paint, so the
+   page behind can never be scrolled in the moment before hydration. */
+html:not(.splash-entered):not(.splash-exempt) body {
+  overflow: hidden;
+}
+
+@keyframes splash-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* `both` holds the from-state through the delay, so the copy starts hidden and
+   rises in just after the artwork lands. The site-wide reduced-motion rule
+   above collapses the duration, and the fill mode makes that resolve to the
+   end state instantly rather than to a blank block. */
+.splash-rise {
+  animation: splash-rise 700ms 120ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }

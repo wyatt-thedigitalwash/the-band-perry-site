@@ -8,6 +8,8 @@ import AnchorScroll from "@/components/shared/AnchorScroll";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { siteSchema } from "@/lib/schema";
 import { OG_DEFAULTS, OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
+import SplashGate from "@/components/SplashGate";
+import { SPLASH_STORAGE_KEY } from "@/lib/pistol";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,11 +35,21 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "16x16 32x32 48x48", type: "image/x-icon" },
-      { url: "/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
-      { url: "/android-chrome-512x512.png", sizes: "512x512", type: "image/png" },
+      {
+        url: "/android-chrome-192x192.png",
+        sizes: "192x192",
+        type: "image/png",
+      },
+      {
+        url: "/android-chrome-512x512.png",
+        sizes: "512x512",
+        type: "image/png",
+      },
     ],
     shortcut: "/favicon.ico",
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
   },
   manifest: "/site.webmanifest",
   // Site-wide social share preview, so any shared bandperry.com link renders a
@@ -62,11 +74,64 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    // suppressHydrationWarning: the splash script below mutates the class list
+    // before React hydrates, so server and client markup intentionally differ.
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
+      <head>
+        {/* Adobe Fonts kit for the release toolkit's body face, Freight Sans
+            Pro. The kit ships that family only, so Kurilian -- the headline
+            face -- stays self-hosted through next/font (src/lib/fonts.ts).
+            Typekit serves the @font-face rules from one host and the font files
+            from another, so both get a preconnect. */}
+        <link
+          rel="preconnect"
+          href="https://use.typekit.net"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preconnect"
+          href="https://p.typekit.net"
+          crossOrigin="anonymous"
+        />
+        <link rel="stylesheet" href="https://use.typekit.net/ahp1ofh.css" />
+
+        {/* Splash gate, first paint. This has to be a blocking inline script:
+            by the time React hydrates the gate has already been painted, so a
+            visitor who entered earlier in this session would see it flash.
+            Stamping the class here lets the CSS in globals.css hide it before
+            the browser paints anything.
+
+            `splash-entered` and `splash-exempt` are not interchangeable --
+            entered means the visitor took an entry action, exempt only means
+            the overlay is hidden because /legal is never gated. Reading the
+            Terms must never count as agreeing to them, so a deep link to
+            /legal gets the second class, and TermsGate offers the way in.
+
+            Wrapped in try/catch because Safari's private mode throws on
+            sessionStorage access. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var e=document.documentElement;if(sessionStorage.getItem(${JSON.stringify(
+              SPLASH_STORAGE_KEY,
+            )})){e.classList.add('splash-entered')}else if(location.pathname.indexOf('/legal')===0){e.classList.add('splash-exempt')}}catch(err){}`,
+          }}
+        />
+
+        {/* The gate is dismissed by a button, so with scripting off it would be
+            a wall in front of the site. Hide it there and those visitors land
+            straight on the home page. */}
+        <noscript>
+          <style>{`#splash-overlay{display:none}`}</style>
+        </noscript>
+      </head>
       <body className="min-h-full flex flex-col">
+        {/* First child of <body> so it exists on the first paint. Shown once
+            per browser session, on every route except /legal. */}
+        <SplashGate />
         {/* Artist + site entity, carried on every page. Individual pages add
             their own breadcrumb and content schema on top of this. */}
         <JsonLd data={siteSchema()} />

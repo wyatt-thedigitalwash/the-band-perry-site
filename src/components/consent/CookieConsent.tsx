@@ -12,8 +12,14 @@ import {
 } from "./consent";
 import { applyConsent } from "./injectScripts";
 import { useFocusTrap } from "@/lib/use-focus-trap";
+import { useSplashEntered } from "./useSplashEntered";
 
-const NON_NECESSARY: Category[] = ["analytics", "advertising", "functional", "social"];
+const NON_NECESSARY: Category[] = [
+  "analytics",
+  "advertising",
+  "functional",
+  "social",
+];
 
 // A stable timestamp source. Date.now() is fine in the browser here.
 function now() {
@@ -21,6 +27,7 @@ function now() {
 }
 
 export default function CookieConsent() {
+  const splashEntered = useSplashEntered();
   const [decided, setDecided] = useState(false);
   const [showBanner, setShowBanner] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -32,9 +39,9 @@ export default function CookieConsent() {
   // it (the banner's Manage button or the floating Cookie Choices pill).
   useFocusTrap(modalRef, showModal);
 
-  // On mount: load any saved choice and inject the consented scripts. A
-  // first-time visitor (no saved choice) sees the banner right away -- this
-  // site has no splash gate to wait on.
+  // On mount: load any saved choice and inject the consented scripts. Scripts
+  // for a returning visitor are injected immediately regardless of the splash;
+  // only the banner UI waits for it (see the render guard below).
   useEffect(() => {
     const saved = readConsent();
     if (saved) {
@@ -55,7 +62,8 @@ export default function CookieConsent() {
   // Allow the footer link and the in-policy "cookie consent tool" link to open it.
   useEffect(() => {
     window.addEventListener("open-cookie-preferences", openModal);
-    return () => window.removeEventListener("open-cookie-preferences", openModal);
+    return () =>
+      window.removeEventListener("open-cookie-preferences", openModal);
   }, [openModal]);
 
   const closeModal = useCallback(() => {
@@ -85,7 +93,9 @@ export default function CookieConsent() {
     // If the user turned OFF a category that was already injected this session,
     // a reload is required to clear those scripts/cookies.
     const prev = applied.current;
-    const removed = prev ? NON_NECESSARY.some((c) => prev[c] && !consent[c]) : false;
+    const removed = prev
+      ? NON_NECESSARY.some((c) => prev[c] && !consent[c])
+      : false;
     setShowBanner(false);
     setShowModal(false);
     setDecided(true);
@@ -100,7 +110,8 @@ export default function CookieConsent() {
 
   const acceptAll = () => commit({ ...emptyConsent(true), decidedAt: now() });
   const rejectAll = () => commit({ ...emptyConsent(false), decidedAt: now() });
-  const savePreferences = () => commit({ ...draft, necessary: true, decidedAt: now() });
+  const savePreferences = () =>
+    commit({ ...draft, necessary: true, decidedAt: now() });
 
   const toggle = (c: Category) => setDraft((d) => ({ ...d, [c]: !d[c] }));
 
@@ -110,25 +121,43 @@ export default function CookieConsent() {
 
   return (
     <>
-      {/* ── Consent banner (first visit) ── */}
-      {showBanner && !showModal && (
+      {/* ── Consent banner (first visit) ──
+          Held back until the splash is clear so the two never stack. The
+          release gate covers the whole viewport at z-80; without this the
+          banner would render underneath it, be invisible, and a visitor could
+          dismiss the splash straight onto a prompt they never saw appear. */}
+      {showBanner && !showModal && splashEntered && (
         <div className="fixed inset-x-0 bottom-0 z-[60] p-4 sm:left-auto sm:right-4 sm:max-w-[420px]">
           <div className="border border-text-body/20 bg-background-alt/95 p-4 shadow-2xl backdrop-blur-sm sm:p-6">
-            <p className="font-display text-[15px] text-text-accent sm:text-[18px]">We value your privacy</p>
+            <p className="font-display text-[15px] text-text-accent sm:text-[18px]">
+              We value your privacy
+            </p>
             <p className="mt-2 font-body text-[12.5px] leading-relaxed text-text-accent sm:mt-3 sm:text-sm">
-              We use cookies to run this site, analyse traffic, and support advertising. You can accept all,
-              reject non-essential cookies, or choose what to allow. See our{" "}
-              <Link href="/legal/privacy#cookies-policy" className="underline hover:text-text-header">
+              We use cookies to run this site, analyse traffic, and support
+              advertising. You can accept all, reject non-essential cookies, or
+              choose what to allow. See our{" "}
+              <Link
+                href="/legal/privacy#cookies-policy"
+                className="underline hover:text-text-header"
+              >
                 Cookies Policy
               </Link>
               .
             </p>
             <div className="mt-3 flex flex-col gap-2 sm:mt-5">
-              <button type="button" onClick={acceptAll} className="cc-btn cc-btn-primary">
+              <button
+                type="button"
+                onClick={acceptAll}
+                className="cc-btn cc-btn-primary"
+              >
                 Accept All
               </button>
               <div className="flex gap-2">
-                <button type="button" onClick={rejectAll} className="cc-btn cc-btn-ghost flex-1">
+                <button
+                  type="button"
+                  onClick={rejectAll}
+                  className="cc-btn cc-btn-ghost flex-1"
+                >
                   Reject All
                 </button>
                 <button
@@ -178,10 +207,16 @@ export default function CookieConsent() {
               </span>
             </button>
 
-            <p className="pr-8 font-display text-[22px] text-text-accent">Cookie Preferences</p>
+            <p className="pr-8 font-display text-[22px] text-text-accent">
+              Cookie Preferences
+            </p>
             <p className="mt-2 font-body text-sm text-text-accent/80">
-              Choose which categories of cookies to allow, then click Save Preferences. Read more in our{" "}
-              <Link href="/legal/privacy#cookies-policy" className="underline hover:text-text-header">
+              Choose which categories of cookies to allow, then click Save
+              Preferences. Read more in our{" "}
+              <Link
+                href="/legal/privacy#cookies-policy"
+                className="underline hover:text-text-header"
+              >
                 Cookies Policy
               </Link>
               .
@@ -189,9 +224,14 @@ export default function CookieConsent() {
 
             <ul className="mt-5 flex flex-col divide-y divide-text-body/15">
               {CATEGORY_META.map((cat) => (
-                <li key={cat.key} className="flex items-start justify-between gap-4 py-4">
+                <li
+                  key={cat.key}
+                  className="flex items-start justify-between gap-4 py-4"
+                >
                   <div>
-                    <p className="font-body font-semibold text-text-accent">{cat.label}</p>
+                    <p className="font-body font-semibold text-text-accent">
+                      {cat.label}
+                    </p>
                     <p className="mt-1 font-body text-xs leading-relaxed text-text-accent/70">
                       {cat.description}
                     </p>
@@ -208,7 +248,9 @@ export default function CookieConsent() {
                       aria-label={cat.label}
                       onClick={() => toggle(cat.key)}
                       className={`mt-1 flex h-6 w-11 shrink-0 items-center rounded-full px-0.5 transition-colors ${
-                        draft[cat.key] ? "bg-[#AADCF8] justify-end" : "bg-white/25 justify-start"
+                        draft[cat.key]
+                          ? "bg-[#AADCF8] justify-end"
+                          : "bg-white/25 justify-start"
                       }`}
                     >
                       <span
@@ -225,20 +267,33 @@ export default function CookieConsent() {
               {dirty && (
                 <p className="flex items-center gap-2 font-body text-xs text-text-accent">
                   <span className="inline-block h-2 w-2 shrink-0 rounded-full bg-[#AADCF8]" />
-                  You have unsaved changes -- click Save Preferences to apply them.
+                  You have unsaved changes -- click Save Preferences to apply
+                  them.
                 </p>
               )}
             </div>
 
             <div className="mt-2 flex flex-col gap-2">
-              <button type="button" onClick={savePreferences} className="cc-btn cc-btn-primary">
+              <button
+                type="button"
+                onClick={savePreferences}
+                className="cc-btn cc-btn-primary"
+              >
                 Save Preferences
               </button>
               <div className="flex gap-2">
-                <button type="button" onClick={rejectAll} className="cc-btn cc-btn-ghost flex-1">
+                <button
+                  type="button"
+                  onClick={rejectAll}
+                  className="cc-btn cc-btn-ghost flex-1"
+                >
                   Reject All
                 </button>
-                <button type="button" onClick={acceptAll} className="cc-btn cc-btn-ghost flex-1">
+                <button
+                  type="button"
+                  onClick={acceptAll}
+                  className="cc-btn cc-btn-ghost flex-1"
+                >
                   Accept All
                 </button>
               </div>
