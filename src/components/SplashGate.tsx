@@ -10,7 +10,7 @@ import { useFocusTrap } from "@/lib/use-focus-trap";
 
 /**
  * Full-screen release gate shown once per session before a visitor reaches the
- * site, announcing the "Pistol" pre-save.
+ * site, announcing the "Pistol" single.
  *
  * Mounted in the root layout, not on a single page, so it gates every entry
  * point -- a fan arriving on /tour from a search result meets it too. The one

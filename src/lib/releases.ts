@@ -19,11 +19,10 @@ export type Release = {
 export const RELEASES: Release[] = [
   {
     // Title, link and artwork come from the splash gate's release constants so
-    // the pre-save URL is defined once. On release day, changing `ctaLabel`
-    // there does not reach this entry -- flip `cta` below to "Listen" too.
+    // the listen URL is defined once.
     title: PISTOL.title,
     year: "2026",
-    cta: "Pre-Save",
+    cta: "Listen",
     href: PISTOL.smartLink,
     art: PISTOL.cover.src,
     artAlt: PISTOL.coverAlt,

@@ -2,9 +2,8 @@
  * "Pistol" -- the single the splash gate promotes.
  *
  * Every string the splash renders lives here so the release can be updated (or
- * the whole gate retired) from one file. On release day, swap `ctaLabel` to
- * "Listen Now", rewrite `leadIn` and `releaseLabel` (e.g. "New Single" /
- * "Out Now"), and point `smartLink` at the live listen link.
+ * the whole gate retired) from one file. Out now: `ctaLabel`/`buttonLabel` read
+ * "Listen Now" and `smartLink` already points at the live listen link.
  * To promote a *different* release later, change these values AND bump the
  * suffix on SPLASH_STORAGE_KEY so returning fans are shown the new gate.
  */
@@ -13,13 +12,13 @@ export const PISTOL = {
   /** Machine-readable release date for the <time> element. */
   releaseDate: "2026-09-04",
   /** Opens the announcement line, ahead of the date. */
-  leadIn: "New Single Out",
+  leadIn: "New Single",
   /** How the date reads in copy. */
-  releaseLabel: "September 4",
+  releaseLabel: "Out Now",
   /** Ends the announcement line, so it reads as the call to action. */
-  ctaLabel: "Pre-Save Now",
+  ctaLabel: "Listen Now",
   /** Standalone button in the top bar, where the line's phrasing is too long. */
-  buttonLabel: "Pre-Save",
+  buttonLabel: "Listen Now",
   /**
    * Feature.fm smart link, the same routing every other CTA on the site uses
    * (see src/lib/releases.ts). Shared with the Music page's grid entry, which
