@@ -3,9 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 
 const DESKTOP_SRC =
-  "https://res.cloudinary.com/dgbiatexy/video/upload/v1785091024/TheBandPerry_Hero_step6x.mp4";
+  "https://media.thedigitalwash.com/the-band-perry/TheBandPerry_Hero_step6x.mp4";
 const MOBILE_SRC =
-  "https://res.cloudinary.com/dgbiatexy/video/upload/v1785091021/TheBandPerry_HeroMobile_ewkx3m.mp4";
+  "https://media.thedigitalwash.com/the-band-perry/TheBandPerry_HeroMobile_ewkx3m.mp4";
 
 // Mobile-breakpoint match keeps the swap in CSS via <source media>, no client JS needed for source selection.
 const MOBILE_BREAKPOINT = "(max-width: 767px)";
