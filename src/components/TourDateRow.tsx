@@ -47,6 +47,11 @@ export function TourDateRow({ date }: { date: TourDate }) {
 
   const location = [date.city, date.region, date.country].filter(Boolean).join(", ");
 
+  // Free shows still say "Tickets" (client preference); `date.free` only feeds
+  // the structured-data price. Presale is the one label worth calling out.
+  const ticketLabel = date.presale ? "Presale" : "Tickets";
+  const ticketLabelA11y = date.presale ? "Presale tickets" : "Tickets";
+
   return (
     // The hover wash is a ::before overlay that fades to transparent at both
     // horizontal edges, echoing the fading dividers, instead of a hard-edged
@@ -101,12 +106,12 @@ export function TourDateRow({ date }: { date: TourDate }) {
               href={date.ticketUrl}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`${date.free ? "Free entry" : "Tickets"} for ${date.venueName}${
+              aria-label={`${ticketLabelA11y} for ${date.venueName}${
                 location ? `, ${location}` : ""
               } (opens in new tab)`}
               className={ctaClass}
             >
-              {date.free ? "Free" : "Tickets"}
+              {ticketLabel}
             </a>
           ) : null}
           {date.rsvpUrl ? (
