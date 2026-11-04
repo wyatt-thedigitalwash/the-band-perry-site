@@ -1,3 +1,4 @@
+import { CHRISTMAS } from "./christmas";
 import { PISTOL } from "./pistol";
 
 export type Release = {
@@ -9,8 +10,8 @@ export type Release = {
   artAlt: string;
 };
 
-// Pistol leads as the current release, then the rest of the 2026 singles,
-// newest first; the rest mirrors the legacy
+// The Christmas EP leads as the current release, then Pistol and the rest of
+// the 2026 singles, newest first; the rest mirrors the legacy
 // bandperry.com/music carousel. Every CTA is a Feature.fm smart link (ffm.to)
 // that fans out to the DSPs, not a direct DSP URL.
 // Note: several singles reuse the same album cover on the legacy site (the three
@@ -19,7 +20,15 @@ export type Release = {
 export const RELEASES: Release[] = [
   {
     // Title, link and artwork come from the splash gate's release constants so
-    // the listen URL is defined once.
+    // the pre-save URL is defined once. Flip `cta` to "Listen" on release day.
+    title: CHRISTMAS.title,
+    year: "2026",
+    cta: "Pre-Save",
+    href: CHRISTMAS.smartLink,
+    art: CHRISTMAS.cover.src,
+    artAlt: CHRISTMAS.cover.alt,
+  },
+  {
     title: PISTOL.title,
     year: "2026",
     cta: "Listen",

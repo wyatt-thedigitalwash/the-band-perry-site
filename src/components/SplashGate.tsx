@@ -4,13 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
-import { PISTOL, SPLASH_STORAGE_KEY } from "@/lib/pistol";
+import { CHRISTMAS, SPLASH_STORAGE_KEY } from "@/lib/christmas";
 import { useSplashEntered } from "@/components/consent/useSplashEntered";
 import { useFocusTrap } from "@/lib/use-focus-trap";
 
 /**
  * Full-screen release gate shown once per session before a visitor reaches the
- * site, announcing the "Pistol" single.
+ * site, announcing the "A Very Band Perry Christmas" EP.
  *
  * Mounted in the root layout, not on a single page, so it gates every entry
  * point -- a fan arriving on /tour from a search result meets it too. The one
@@ -34,6 +34,10 @@ import { useFocusTrap } from "@/lib/use-focus-trap";
 
 // Matches the #splash-overlay opacity transition in globals.css.
 const FADE_MS = 450;
+
+// The key art's own shadow tone, measured from the campaign comps, so the
+// photo's edges dissolve into the page rather than sitting on a black panel.
+const PAPER = "#181818";
 
 export default function SplashGate() {
   const pathname = usePathname();
@@ -94,194 +98,147 @@ export default function SplashGate() {
   return (
     <div
       id="splash-overlay"
-      // Painted the banner's own paper colour. Measured, not guessed: the mean
-      // luminance of the artwork's empty right-hand band is 23.3, so #171717 is
-      // what makes the right column read as the same paper as the left rather
-      // than as a lighter panel beside it. It also keeps the frame the image is
-      // still decoding into from flashing black.
-      // Below lg this is a plain full-bleed box: the banner covers it and the
-      // copy sits in a bar along the bottom. At lg it becomes two columns --
-      // artwork left, copy right. 55/45 rather than an even split because the
-      // lockup needs the wider half to read at a decent size.
-      className="fixed inset-0 z-[80] overflow-hidden bg-[#171717] lg:grid lg:grid-cols-[56fr_44fr]"
+      // One portrait photo serves every width. Below lg it sits at the top of
+      // the screen at its natural proportions and fades out into the paper
+      // tone, with the lockup and copy stacked beneath it. At lg the layout
+      // becomes a split: the photo anchors the right side and its left edge
+      // dissolves into the paper, which carries the lockup and copy.
+      className="fixed inset-0 z-[80] overflow-hidden bg-[#181818]"
       role="dialog"
       aria-modal="true"
-      aria-label={`${PISTOL.title}, the new single from The Band Perry`}
+      aria-label={`${CHRISTMAS.title}, the new EP from The Band Perry`}
     >
-      {/* Below lg the banner is a full-bleed background with the copy in a bar
-          along the bottom; the bar is sized to the empty margin the artwork
-          leaves under the lockup (15.5% of the desktop banner's height, 34.6%
-          of the mobile one's) so a plain centred crop clears it.
-
-          Art direction: the two banners are separate compositions (16:9 and
-          9:16), not crops of one another, so next/image's own srcset cannot
-          cover both. Two elements toggled at the 768px breakpoint is the
-          pattern Next documents for this.
-
-          Every candidate is in the DOM at every width, and a `display: none`
-          <img> is still fetched. Declaring the off-breakpoint ones as 1px wide
-          is what stops that: the browser picks the smallest srcset candidate
-          for the art it is not showing, so only the right one is really
-          downloaded. It also matches what each element actually measures,
-          which is what next/image's sizes warning is asking for. */}
-      <div className="absolute inset-0 lg:hidden">
+      {/* Below md the photo is sized by its own aspect ratio so the whole frame
+          (tree, couple, stone wall) shows the way it does in the campaign
+          comp, with the copy stack filling the room below it. From md the
+          taller tablet viewport can take a full-bleed cover crop instead, and
+          at lg it narrows to the right 64% of the screen, cropped from the
+          top so the couple stay in frame. */}
+      <div className="absolute inset-x-0 top-0 aspect-[1434/1920] md:inset-0 md:aspect-auto lg:inset-y-0 lg:left-auto lg:right-0 lg:w-[64%]">
         <Image
-          src={PISTOL.bannerMobile.src}
-          alt={PISTOL.bannerAlt}
+          src={CHRISTMAS.photo.src}
+          alt={CHRISTMAS.photo.alt}
           fill
-          sizes="(min-width: 768px) 1px, 100vw"
+          sizes="(min-width: 1024px) 64vw, 100vw"
           priority
-          className="object-cover object-center md:hidden"
+          className="object-cover object-top"
         />
-        <Image
-          src={PISTOL.bannerDesktop.src}
-          alt={PISTOL.bannerAlt}
-          fill
-          sizes="(min-width: 1024px) 1px, (min-width: 768px) 100vw, 1px"
-          priority
-          className="hidden object-cover object-center md:block"
+
+        {/* Fades, split by breakpoint: the bottom of the photo dissolves into
+            the paper below lg (the copy stack rises out of it), and its left
+            edge does the same at lg so there is no hard seam where the photo
+            meets the page. The desktop one also darkens the lower third a
+            touch so the stone wall does not outshine the copy. */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 bottom-0 h-[58%] lg:hidden"
+          style={{
+            backgroundImage: `linear-gradient(to top, ${PAPER} 0%, ${PAPER} 12%, rgba(24,24,24,0.82) 42%, rgba(24,24,24,0) 100%)`,
+          }}
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-y-0 left-0 hidden w-[48%] lg:block"
+          style={{
+            backgroundImage: `linear-gradient(to right, ${PAPER} 0%, ${PAPER} 10%, rgba(24,24,24,0.72) 45%, rgba(24,24,24,0) 100%)`,
+          }}
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 bottom-0 hidden h-[36%] lg:block"
+          style={{
+            backgroundImage: `linear-gradient(to top, rgba(24,24,24,0.7) 0%, rgba(24,24,24,0) 100%)`,
+          }}
         />
       </div>
 
-      {/* At lg the left column carries the square sleeve instead of a cropped
-          banner. Cropping the 16:9 banner into a half-width column left its cut
-          edge butting against the flat background, and no amount of colour
-          matching hides texture meeting no-texture. The sleeve sidesteps that
-          entirely: it carries its own frame, so it reads as artwork resting on
-          the page rather than as a panel spliced into it.
-
-          Sized by whichever runs out first, the column's width or the
-          viewport's height, so it stays square and never overflows. */}
-      <div className="hidden items-center justify-center p-10 lg:flex xl:p-14">
-        <div className="relative aspect-square w-full max-w-[calc(100dvh-6rem)] xl:max-w-[calc(100dvh-8rem)]">
-          <Image
-            src={PISTOL.cover.src}
-            alt={PISTOL.coverAlt}
-            fill
-            sizes="(min-width: 1024px) 50vw, 1px"
-            priority
-            className="object-contain"
-          />
-        </div>
-      </div>
-
-      {/* One bar under the lockup: the announcement, the two actions, and the
-          arbitration notice. Deliberately shallow, because that is what fits
-          inside the artwork's own bottom margin once the banner is cropped to
-          fill the window. Anything taller starts climbing onto the lips. */}
+      {/* The copy stack: lockup, date, sub-head, the two actions, and the
+          arbitration notice, centred on the lockup at every width. Pinned to
+          the bottom below lg so it rises out of the photo's fade; at lg it is
+          the left column, vertically centred. */}
       <div
         ref={panelRef}
-        className="splash-rise absolute inset-x-0 bottom-0 flex flex-col items-center px-5 pb-5 text-center lg:relative lg:inset-auto lg:h-full lg:items-start lg:justify-center lg:px-12 lg:pb-0 lg:text-left xl:px-16"
+        className="splash-rise absolute inset-x-0 bottom-0 flex flex-col items-center px-5 pb-6 text-center sm:pb-8 lg:inset-y-0 lg:right-auto lg:w-[50%] lg:justify-center lg:px-14 lg:pb-0 xl:px-16"
       >
-        {/* A row beside the artwork does not fit in the right column, so at lg
-            this returns to a stack -- which is also what lets the announcement
-            wrap and set at display size. */}
-        <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-6 lg:flex-col lg:items-start lg:gap-8">
-          {/* A <p>, not a heading: this overlay now renders on every route, and
-              an h2 announcing a single would land in the middle of the heading
-              outline of /tour, /music and every legal page.
+        {/* The lockup is the EP's title, but as a <p>, not a heading: this
+            overlay renders on every route, and an h2 announcing an EP would
+            land in the middle of the heading outline of /tour, /music and
+            every legal page. The image's alt carries the title. */}
+        <p className="w-[min(86vw,440px)] sm:w-[min(80vw,520px)] lg:w-full lg:max-w-[600px] xl:max-w-[680px]">
+          <Image
+            src={CHRISTMAS.lockup.src}
+            alt={CHRISTMAS.lockup.alt}
+            width={CHRISTMAS.lockup.width}
+            height={CHRISTMAS.lockup.height}
+            priority
+            sizes="(min-width: 1280px) 680px, (min-width: 1024px) 600px, (min-width: 640px) 520px, 86vw"
+            className="h-auto w-full"
+          />
+        </p>
 
-              The "new single" framing lives in this line rather than in an
-              eyebrow above it: the band under the lockup is only tall enough
-              for one row, so a second line would push the bar onto the artwork.
-
-              `lining-nums` is not cosmetic: freight-sans-pro ships old-style
-              figures by default, which sets the 4 as a descending lowercase
-              numeral that hangs below the baseline. lnum switches it to the
-              cap-height form so it sits level with the letters beside it. */}
-          <p className="font-freight text-[17px] font-bold uppercase leading-none tracking-[0.01em] text-[#EBB703] lining-nums sm:text-[24px] lg:flex lg:flex-col-reverse lg:items-start lg:gap-1.5">
-            {/* Source order stays "New Single Out September 4" -- that is the
-                sentence, and it is what a screen reader and the single-line
-                mobile bar both need. `flex-col-reverse` flips only the visual
-                stacking at lg, putting the date on top without rearranging the
-                words. Reordering the markup instead would read backwards
-                everywhere the layout is not a two-line stack.
-
-                A whitespace-only text node between flex items is not rendered
-                (CSS Flexbox §4), so the space below only joins the two halves
-                on the single line and adds nothing to the stack. */}
-            <span className="lg:text-[23px] xl:text-[26px]">
-              {PISTOL.leadIn}
-            </span>{" "}
-            <time
-              dateTime={PISTOL.releaseDate}
-              className="lg:text-[36px] lg:leading-[1.05] xl:text-[42px]"
-            >
-              {PISTOL.releaseLabel}
-            </time>
-          </p>
-
-          {/* Its own flex item rather than the last glyph inside the line, so
-              the row's `gap` sets the space on BOTH sides of it. Inline it was
-              preceded by an ordinary word space -- about a quarter of an em,
-              nothing like the 24px gap that followed it.
-
-              Separator, and only that: hidden from screen readers, which would
-              announce it as "vertical line" mid-sentence, and hidden wherever
-              the bar stacks -- on mobile and again at lg -- since a trailing
-              rule above a stack points at nothing. A display:none flex item is
-              removed from layout entirely, so it leaves no phantom gap. */}
-          <span
-            aria-hidden="true"
-            className="font-freight hidden text-[24px] font-bold leading-none text-[#EBB703] sm:block lg:hidden"
+        {/* Date on top, sub-head beneath, both in the toolkit's sub-head face.
+            `lining-nums` keeps the 6 at cap height rather than letting an
+            old-style figure drop below the baseline. */}
+        <p className="font-benton mt-2 text-[#CBB699] lining-nums sm:mt-3 lg:-mt-1">
+          <time
+            dateTime={CHRISTMAS.releaseDate}
+            className="block text-[34px] font-bold italic leading-none tracking-[-0.01em] sm:text-[40px] lg:text-[42px] xl:text-[50px]"
           >
-            |
+            {CHRISTMAS.releaseLabel}
+          </time>
+          <span className="mt-2 block text-[13px] font-bold uppercase leading-none tracking-[0.1em] sm:text-[15px] lg:mt-2.5 lg:text-[15px] xl:text-[17px]">
+            {CHRISTMAS.subhead}
           </span>
+        </p>
 
-          {/* 380px rather than 320: on a 390px phone the row is already capped
-              at the available width (~350px after the bar's own padding), so
-              raising the ceiling simply lets the pair use it. At 320 each half
-              came out ~154px, which was under what "Enter Site" needs and broke
-              the label onto a second line. */}
-          <div className="flex w-full max-w-[380px] items-center gap-3 sm:w-auto sm:max-w-none lg:gap-4">
-            <a
-              href={PISTOL.smartLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-freight flex min-h-[44px] flex-1 items-center justify-center whitespace-nowrap bg-[#EBB703] px-6 text-[13px] font-semibold uppercase tracking-[0.04em] text-[#161616] sm:px-8 transition-colors duration-200 hover:bg-[#FAFAFA] sm:flex-none"
-            >
-              {PISTOL.buttonLabel}
-              <span className="sr-only">
-                {" "}
-                {PISTOL.title} (opens in new tab)
-              </span>
-            </a>
+        {/* Two full-width actions, stacked on phones and side by side from sm.
+            Tall enough to be the obvious next step under the announcement. */}
+        <div className="mt-6 flex w-full max-w-[440px] flex-col gap-3 sm:max-w-[520px] sm:flex-row lg:mt-7 lg:w-auto lg:max-w-none">
+          <a
+            href={CHRISTMAS.smartLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-benton flex min-h-[56px] flex-1 items-center justify-center whitespace-nowrap bg-[#CBB699] px-8 text-[15px] font-bold uppercase tracking-[0.08em] text-[#181818] transition-colors duration-200 hover:bg-[#FAFAFA] lg:min-w-[260px] lg:flex-none"
+          >
+            {CHRISTMAS.buttonLabel}
+            <span className="sr-only">
+              {" "}
+              {CHRISTMAS.title} (opens in new tab)
+            </span>
+          </a>
 
-            <button
-              type="button"
-              onClick={dismiss}
-              className="font-freight flex min-h-[44px] flex-1 items-center justify-center whitespace-nowrap border border-[#FAFAFA]/40 px-6 text-[13px] font-medium uppercase tracking-[0.04em] text-[#FAFAFA] sm:px-8 transition-colors duration-200 hover:border-[#EBB703] hover:text-[#EBB703] sm:flex-none"
-            >
-              Enter Site
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={dismiss}
+            className="font-benton flex min-h-[56px] flex-1 items-center justify-center whitespace-nowrap border border-[#CBB699]/70 px-8 text-[15px] font-bold uppercase tracking-[0.08em] text-[#F5EEE2] transition-colors duration-200 hover:border-[#FAFAFA] hover:text-[#FAFAFA] lg:min-w-[200px] lg:flex-none"
+          >
+            Enter Site
+          </button>
         </div>
 
         {/* Arbitration / class-action notice, directly under the entry buttons
             so no visitor can claim they had no notice of it. This is what makes
             "Enter Site" a meaningful consent action rather than just closing an
-            overlay. Each of the three phrases deep-links to its own section.
-            One line on desktop by design -- the band beneath the lockup has
-            room for the bar and this, and nothing more. */}
-        <p className="font-freight mt-3 max-w-[30rem] text-[11px] leading-relaxed text-[#FAFAFA]/60 sm:max-w-none lg:mt-10 lg:max-w-[30rem] lg:text-[12px]">
+            overlay. Each of the three phrases deep-links to its own section. */}
+        <p className="font-benton mt-5 max-w-[32rem] text-[11px] font-semibold leading-relaxed text-[#FAFAFA]/60 lg:mt-8 lg:text-[12px]">
           By entering, you consent to our{" "}
           <Link
             href="/legal/terms"
-            className="font-semibold underline underline-offset-2 hover:text-[#FAFAFA]"
+            className="font-bold underline underline-offset-2 hover:text-[#FAFAFA]"
           >
             Terms &amp; Conditions
           </Link>
           , including{" "}
           <Link
             href="/legal/terms#section-17"
-            className="font-semibold underline underline-offset-2 hover:text-[#FAFAFA]"
+            className="font-bold underline underline-offset-2 hover:text-[#FAFAFA]"
           >
             binding arbitration
           </Link>{" "}
           and a{" "}
           <Link
             href="/legal/terms#class-action-waiver"
-            className="font-semibold underline underline-offset-2 hover:text-[#FAFAFA]"
+            className="font-bold underline underline-offset-2 hover:text-[#FAFAFA]"
           >
             waiver of class action rights
           </Link>

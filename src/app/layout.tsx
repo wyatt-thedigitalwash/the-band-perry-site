@@ -9,7 +9,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { siteSchema } from "@/lib/schema";
 import { OG_DEFAULTS, OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 import SplashGate from "@/components/SplashGate";
-import { SPLASH_STORAGE_KEY } from "@/lib/pistol";
+import { SPLASH_STORAGE_KEY } from "@/lib/christmas";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -82,11 +82,11 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        {/* Adobe Fonts kit for the release toolkit's body face, Freight Sans
-            Pro. The kit ships that family only, so Kurilian -- the headline
-            face -- stays self-hosted through next/font (src/lib/fonts.ts).
-            Typekit serves the @font-face rules from one host and the font files
-            from another, so both get a preconnect. */}
+        {/* Adobe Fonts kit for the Christmas EP toolkit: Desire Pro (headlines)
+            and Benton Modern Display (sub-heads, body). Kurilian, the site's
+            own headline face, stays self-hosted through next/font
+            (src/lib/fonts.ts). Typekit serves the @font-face rules from one
+            host and the font files from another, so both get a preconnect. */}
         <link
           rel="preconnect"
           href="https://use.typekit.net"
@@ -97,7 +97,7 @@ export default function RootLayout({
           href="https://p.typekit.net"
           crossOrigin="anonymous"
         />
-        <link rel="stylesheet" href="https://use.typekit.net/ahp1ofh.css" />
+        <link rel="stylesheet" href="https://use.typekit.net/swm5bbf.css" />
 
         {/* Splash gate, first paint. This has to be a blocking inline script:
             by the time React hydrates the gate has already been painted, so a

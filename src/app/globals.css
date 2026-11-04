@@ -28,12 +28,12 @@
   --font-display: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   --font-body: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 
-  /* Freight Sans Pro, the release toolkit's sub-head / body face, served from
-     the artist's Adobe Fonts kit (linked in the root layout). Kurilian, the
-     headline face, is self-hosted instead -- see src/lib/fonts.ts -- because
-     that kit ships Freight Sans only. Generates the `font-freight` utility. */
-  --font-freight: "freight-sans-pro", ui-sans-serif, system-ui, -apple-system,
-    "Segoe UI", Arial, sans-serif;
+  /* The Christmas EP toolkit's faces, served from the artist's Adobe Fonts
+     kit (linked in the root layout): Desire Pro for headlines, Benton Modern
+     Display for sub-heads (700, plus a 700 italic) and body copy (600).
+     Generate the `font-desire` and `font-benton` utilities. */
+  --font-desire: "desire-pro", Georgia, "Times New Roman", serif;
+  --font-benton: "benton-modern-display", Georgia, "Times New Roman", serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -231,7 +231,7 @@ section[data-bg="dark"] + section[data-bg="dark"] {
 }
 
 
-/* Splash Gate ("Pistol" release)
+/* Splash Gate ("A Very Band Perry Christmas" release)
    The gate is server-rendered so it is painted with the very first frame rather
    than dropping over an already-visible page. For a visitor who entered earlier
    in the session that would invert the problem, so the root layout runs a

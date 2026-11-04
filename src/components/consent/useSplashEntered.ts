@@ -1,7 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import { SPLASH_STORAGE_KEY } from "@/lib/pistol";
+import { SPLASH_STORAGE_KEY } from "@/lib/christmas";
 
 // The splash signals its state with classes on <html>, set by the pre-paint
 // script in the root layout and by SplashGate.tsx on dismissal:

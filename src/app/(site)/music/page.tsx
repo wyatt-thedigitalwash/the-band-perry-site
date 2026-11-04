@@ -11,7 +11,7 @@ import { pageUrls } from "@/lib/seo";
 export const metadata: Metadata = {
   title: "Music | The Band Perry",
   description:
-    "Pre-save Pistol, the new single from The Band Perry, and stream the rest of the catalog, from Buzzards and Kill It back to If I Die Young.",
+    "Pre-save A Very Band Perry Christmas, the new EP from The Band Perry, and stream the rest of the catalog, from Pistol and Buzzards back to If I Die Young.",
   ...pageUrls("/music"),
 };
 
