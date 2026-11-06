@@ -20,10 +20,10 @@ export type Release = {
 export const RELEASES: Release[] = [
   {
     // Title, link and artwork come from the splash gate's release constants so
-    // the pre-save URL is defined once. Flip `cta` to "Listen" on release day.
+    // the smart link is defined once.
     title: CHRISTMAS.title,
     year: "2026",
-    cta: "Pre-Save",
+    cta: "Listen",
     href: CHRISTMAS.smartLink,
     art: CHRISTMAS.cover.src,
     artAlt: CHRISTMAS.cover.alt,

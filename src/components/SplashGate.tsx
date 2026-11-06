@@ -176,10 +176,9 @@ export default function SplashGate() {
           />
         </p>
 
-        {/* Date on top, sub-head beneath, both in the toolkit's sub-head face.
-            `lining-nums` keeps the 6 at cap height rather than letting an
-            old-style figure drop below the baseline. */}
-        <p className="font-benton mt-2 text-[#CBB699] lining-nums sm:mt-3 lg:-mt-1">
+        {/* Release line on top, sub-head beneath, both in the toolkit's
+            sub-head face. */}
+        <p className="font-benton mt-2 text-[#CBB699] sm:mt-3 lg:-mt-1">
           <time
             dateTime={CHRISTMAS.releaseDate}
             className="block text-[34px] font-bold italic leading-none tracking-[-0.01em] sm:text-[40px] lg:text-[42px] xl:text-[50px]"

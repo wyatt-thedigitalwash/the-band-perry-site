@@ -10,12 +10,12 @@ export const CHRISTMAS = {
   title: "A Very Band Perry Christmas",
   /** Machine-readable release date for the <time> element. */
   releaseDate: "2026-11-06",
-  /** How the date reads in copy. */
-  releaseLabel: "Available November 6",
+  /** Headline in the date slot, now that the EP is out. */
+  releaseLabel: "Out Now",
   /** Sub-head under the date. */
-  subhead: "Pre-Save / Pre-Order Now",
+  subhead: "The New Christmas EP",
   /** Primary button label. */
-  buttonLabel: "Pre-Save / Pre-Order",
+  buttonLabel: "Listen Now",
   /**
    * Feature.fm smart link, the same routing every other CTA on the site uses
    * (see src/lib/releases.ts).

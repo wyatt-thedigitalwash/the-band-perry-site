@@ -53,7 +53,7 @@ body {
    Tailwind v4's Preflight dropped v3's `button { cursor: pointer }`, so a
    <button> falls back to the browser default arrow while an <a> styled exactly
    the same shows a hand. On the splash gate that put "Enter Site" and
-   "Pre-Save" side by side with different cursors. Restoring it here rather
+   "Listen Now" side by side with different cursors. Restoring it here rather
    than per-component keeps every button in the site consistent -- this is the
    remedy Tailwind documents for the change. `:not(:disabled)` leaves disabled
    controls (e.g. the subscribe form's submit while posting) with the default
