@@ -13,6 +13,20 @@ export type Video = {
 // "Don't Let Me Be Lonely" upload with a typo ("Lonley") -- corrected here.
 export const VIDEOS: Video[] = [
   {
+    title: "All I Want For Christmas Is You",
+    youtubeId: "35NmKvluRE8",
+    year: "2026",
+    date: "November 2026",
+    released: "2026-11-06",
+  },
+  {
+    title: "Pistol",
+    youtubeId: "Uyttjbkfuls",
+    year: "2026",
+    date: "September 2026",
+    released: "2026-09-04",
+  },
+  {
     title: "You Lie (Forever Version)",
     featuring: "with Kaitlin Butts",
     youtubeId: "4uSLJxbZ_wA",
