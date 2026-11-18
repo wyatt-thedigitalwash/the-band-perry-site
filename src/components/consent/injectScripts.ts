@@ -12,6 +12,7 @@
 // an analytics property is added.
 
 import type { Consent } from "./consent";
+import { setGoogleConsentMode } from "./privacy";
 
 const GOOGLE_ADS_ID = "AW-17574370157";
 const META_PIXEL_ID = "1858545644702596";
@@ -88,6 +89,9 @@ function loadAdvertising() {
 
 /** Inject scripts for every category the user has consented to. Additive only. */
 export function applyConsent(consent: Consent) {
+  // Consent Mode first, so every Google tag below honours the exact choice
+  // (e.g. no Google Signals ad data on an analytics-only or GPC visit).
+  setGoogleConsentMode(consent);
   if (consent.analytics) loadAnalytics();
   if (consent.advertising) loadAdvertising();
   // Functional and Social categories have no active third-party scripts on this
